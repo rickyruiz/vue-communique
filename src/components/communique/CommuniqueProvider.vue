@@ -1,7 +1,7 @@
 <script lang="ts">
+import { CommuniqueNotification } from '@/plugin/types/communique'
 import Communique from '@/plugin/communique'
 import Vue from 'vue'
-import { CommuniqueNotification } from '../../../types/communique'
 
 export default Vue.extend({
   name: 'CommuniqueProvider',

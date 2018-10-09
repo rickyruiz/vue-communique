@@ -1,10 +1,10 @@
+import Vue, { PluginFunction } from 'vue'
 import { CommuniquePluginOptions } from './types'
 import {
   LayoutConfig,
   ICommuniqueNotification,
   Component,
 } from './types/communique'
-import Vue, { PluginFunction } from 'vue'
 
 export enum CommuniqueEffect {
   Scale = 'scale',
