@@ -1,7 +1,7 @@
 {
   "name": "vue-communique",
   "description": "An advanced, flexible Vue notification system.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": {
     "name": "Ricardo Ruiz",
     "email": "ricardo@mrcodigo.com"
@@ -34,9 +34,6 @@
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
-  "dependencies": {
-    "vue": "^2.5.17"
-  },
   "devDependencies": {
     "@types/jest": "^23.3.5",
     "@types/webpack": "^4.4.15",
@@ -52,6 +49,7 @@
     "babel-core": "7.0.0-bridge.0",
     "ts-jest": "^23.10.4",
     "typescript": "^3.1.1",
+    "vue": "^2.5.17",
     "vue-template-compiler": "^2.5.17"
   }
 }
