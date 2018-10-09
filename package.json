@@ -1,0 +1,48 @@
+{
+  "name": "vue-communique",
+  "description": "Advanced Vue notification system",
+  "version": "0.0.1",
+  "author": {
+    "name": "Ricardo Ruiz",
+    "email": "ricardo@mrcodigo.com"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "plugin",
+    "notifications"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rickyruiz/vue-communique.git"
+  },
+  "typings": "types/index.d.ts",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:lib": "vue-cli-service build --target lib --name VueCommunique src/plugin/index.ts",
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "vue": "^2.5.17"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.4",
+    "@types/webpack": "^4.4.15",
+    "@types/webpack-env": "^1.13.6",
+    "@vue/cli-plugin-babel": "^3.0.5",
+    "@vue/cli-plugin-eslint": "^3.0.5",
+    "@vue/cli-plugin-typescript": "^3.0.5",
+    "@vue/cli-plugin-unit-jest": "^3.0.5",
+    "@vue/cli-service": "^3.0.5",
+    "@vue/eslint-config-prettier": "^3.0.5",
+    "@vue/eslint-config-typescript": "^3.0.5",
+    "@vue/test-utils": "^1.0.0-beta.25",
+    "babel-core": "7.0.0-bridge.0",
+    "ts-jest": "^23.10.4",
+    "typescript": "^3.1.1",
+    "vue-template-compiler": "^2.5.17"
+  }
+}
