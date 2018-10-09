@@ -1,7 +1,7 @@
 {
   "name": "vue-communique",
   "description": "An advanced, flexible Vue notification system.",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": {
     "name": "Ricardo Ruiz",
     "email": "ricardo@mrcodigo.com"
@@ -14,7 +14,11 @@
   ],
   "license": "MIT",
   "main": "dist/vue-communique.umd.js",
-  "typings": "types/index.d.ts",
+  "typings": "plugin/types/index.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rickyruiz/vue-communique.git"

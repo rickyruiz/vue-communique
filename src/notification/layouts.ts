@@ -1,4 +1,4 @@
-import { LayoutConfig } from '@/plugin/types'
+import { LayoutConfig } from '../../types'
 
 const layouts: LayoutConfig[] = []
 

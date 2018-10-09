@@ -1,7 +1,7 @@
-import { install } from './install'
-import { CommuniquePluginOptions } from './types'
-import Communique from './communique'
 import { PluginObject } from 'vue'
+import { install } from './install'
+import { CommuniquePluginOptions } from '../../types'
+import Communique from './communique'
 
 Communique.install = install
 Communique.version = '__VERSION__'
