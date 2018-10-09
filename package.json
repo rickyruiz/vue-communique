@@ -1,6 +1,6 @@
 {
   "name": "vue-communique",
-  "description": "Advanced Vue notification system",
+  "description": "An advanced, flexible Vue notification system.",
   "version": "0.0.1",
   "author": {
     "name": "Ricardo Ruiz",
@@ -13,15 +13,20 @@
     "notifications"
   ],
   "license": "MIT",
+  "main": "dist/vue-communique.umd.js",
+  "typings": "types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rickyruiz/vue-communique.git"
   },
-  "typings": "types/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/rickyruiz/vue-communique/issues"
+  },
+  "homepage": "https://github.com/rickyruiz/vue-communique#readme",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:lib": "vue-cli-service build --target lib --name VueCommunique src/plugin/index.ts",
+    "build:lib": "vue-cli-service build --target lib --name vue-communique src/plugin/index.ts",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
@@ -29,7 +34,7 @@
     "vue": "^2.5.17"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.4",
+    "@types/jest": "^23.3.5",
     "@types/webpack": "^4.4.15",
     "@types/webpack-env": "^1.13.6",
     "@vue/cli-plugin-babel": "^3.0.5",
