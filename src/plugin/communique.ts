@@ -1,10 +1,10 @@
 import Vue, { PluginFunction } from 'vue'
-import { CommuniquePluginOptions } from './types'
+import { CommuniquePluginOptions } from '../../types'
 import {
   LayoutConfig,
   ICommuniqueNotification,
   Component,
-} from './types/communique'
+} from '../../types/communique'
 
 export enum CommuniqueEffect {
   Scale = 'scale',
@@ -37,11 +37,11 @@ class CommuniqueNotification implements ICommuniqueNotification {
   $listeners?: { [key: string]: Function | Function[] }
   component?: string | Component
   delay?: number
-  effect?: CommuniqueEffect
+  effect?: string
   layout?: string | Component
   message: string
   timeout?: number
-  variant?: CommuniqueVariant
+  variant?: string
   variantStyles?: Record<string, any>
 
   constructor(
@@ -187,9 +187,6 @@ export default class Communique {
   }
 
   private static uid = 0
-  static readonly Effect = CommuniqueEffect
-  static readonly Event = CommuniqueEvent
-  static readonly Variant = CommuniqueVariant
 
   static install: PluginFunction<CommuniquePluginOptions>
   static version: string

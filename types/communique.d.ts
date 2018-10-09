@@ -1,9 +1,4 @@
 import Vue, { ComponentOptions, PluginFunction, AsyncComponent } from 'vue'
-import {
-  CommuniqueEffect,
-  CommuniqueEvent,
-  CommuniqueVariant,
-} from '@/plugin/communique'
 
 export type Component = ComponentOptions<Vue> | typeof Vue | AsyncComponent
 
@@ -42,9 +37,6 @@ export declare class Communique {
   error(notification: ICommuniqueNotification): Promise<CommuniqueNotification>
 
   private static uid: number
-  static readonly Effect: typeof CommuniqueEffect
-  static readonly Event: typeof CommuniqueEvent
-  static readonly Variant: typeof CommuniqueVariant
 
   static install: PluginFunction<CommuniquePluginOptions>
 }
@@ -56,11 +48,11 @@ export declare class CommuniqueNotification implements ICommuniqueNotification {
   $listeners?: { [key: string]: Function | Function[] }
   component?: string | Component
   delay?: number
-  effect?: CommuniqueEffect
+  effect?: string
   layout?: string | Component
   message: string
   timeout?: number
-  variant?: CommuniqueVariant
+  variant?: string
 
   assignUniqueId(uid: number): void
 
@@ -86,10 +78,10 @@ export interface ICommuniqueNotification {
   $listeners?: { [key: string]: Function | Function[] }
   component?: string | Component
   delay?: number
-  effect?: CommuniqueEffect
+  effect?: string
   layout?: string | Component
   message: string
   timeout?: number
-  variant?: CommuniqueVariant
+  variant?: string
   variantStyles?: Record<string, any>
 }

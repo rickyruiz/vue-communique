@@ -14,10 +14,10 @@
   ],
   "license": "MIT",
   "main": "dist/vue-communique.umd.js",
-  "typings": "src/plugin/types/index.d.ts",
+  "typings": "types/index.d.ts",
   "files": [
     "dist",
-    "src/plugin"
+    "types"
   ],
   "repository": {
     "type": "git",

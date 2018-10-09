@@ -1,7 +1,7 @@
 <script lang="ts">
-import { CommuniqueNotification } from '@/plugin/types/communique'
-import Communique from '@/plugin/communique'
+import { CommuniqueEffect, CommuniqueVariant } from '@/plugin/communique'
 import Vue from 'vue'
+import { CommuniqueNotification } from '../../../types/communique'
 
 export default Vue.extend({
   name: 'CommuniqueProvider',
@@ -29,7 +29,7 @@ export default Vue.extend({
      */
     effect: {
       type: String,
-      default: Communique.Effect.Scale,
+      default: CommuniqueEffect.Scale,
     },
 
     /**
@@ -38,7 +38,7 @@ export default Vue.extend({
      */
     variant: {
       type: String,
-      default: Communique.Variant.Error,
+      default: CommuniqueVariant.Error,
     },
 
     /**

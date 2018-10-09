@@ -44,7 +44,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import CommuniqueNotification from './CommuniqueNotification.vue'
-import Communique from '@/plugin/communique'
+import { CommuniqueVariant, CommuniqueEffect } from '@/plugin/communique'
 
 export default Vue.extend({
   name: 'CommuniqueExample',
@@ -57,14 +57,14 @@ export default Vue.extend({
     return {
       // Communique notification props
       layout: 'default',
-      variant: Communique.Variant.Primary,
-      effect: Communique.Effect.Scale,
+      variant: CommuniqueVariant.Primary,
+      effect: CommuniqueEffect.Scale,
       message: 'hello world',
 
       // Dropdown options
       layouts: this.$_communique.layouts.map(({ name }) => name),
-      variants: Communique.Variant,
-      effects: Communique.Effect,
+      variants: CommuniqueVariant,
+      effects: CommuniqueEffect,
     }
   },
 
