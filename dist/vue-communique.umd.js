@@ -1424,7 +1424,7 @@ module.exports = function (KEY) {
 
 /***/ }),
 
-/***/ "7d66":
+/***/ "7a6f":
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
@@ -2018,17 +2018,6 @@ module.exports = !__webpack_require__("9e1e") && !__webpack_require__("79e5")(fu
 
 /***/ }),
 
-/***/ "c919":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CommuniqueWrapper_vue_vue_type_style_index_0_id_5848d3e0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("7d66");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CommuniqueWrapper_vue_vue_type_style_index_0_id_5848d3e0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CommuniqueWrapper_vue_vue_type_style_index_0_id_5848d3e0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CommuniqueWrapper_vue_vue_type_style_index_0_id_5848d3e0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "ca5a":
 /***/ (function(module, exports) {
 
@@ -2201,6 +2190,17 @@ module.exports = (
 
 /***/ }),
 
+/***/ "e1e2":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CommuniqueWrapper_vue_vue_type_style_index_0_id_0aebfbd8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("7a6f");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CommuniqueWrapper_vue_vue_type_style_index_0_id_0aebfbd8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CommuniqueWrapper_vue_vue_type_style_index_0_id_0aebfbd8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CommuniqueWrapper_vue_vue_type_style_index_0_id_0aebfbd8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "e853":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2284,6 +2284,12 @@ if (typeof window !== 'undefined') {
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find-index.js
+var es6_array_find_index = __webpack_require__("20d6");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.promise.js
+var es6_promise = __webpack_require__("551c");
+
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/defineProperty.js
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -2319,6 +2325,239 @@ function _objectSpread(target) {
 
   return target;
 }
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/classCallCheck.js
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/createClass.js
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+// CONCATENATED MODULE: ./src/plugin/communique.ts
+
+
+
+
+
+
+var CommuniqueEffect;
+
+(function (CommuniqueEffect) {
+  CommuniqueEffect["Scale"] = "scale";
+  CommuniqueEffect["Slide"] = "slide";
+})(CommuniqueEffect || (CommuniqueEffect = {}));
+
+var CommuniqueEvent;
+
+(function (CommuniqueEvent) {
+  CommuniqueEvent["BeforeEnter"] = "before-enter";
+  CommuniqueEvent["Enter"] = "enter";
+  CommuniqueEvent["AfterEnter"] = "after-enter";
+  CommuniqueEvent["EnterCancelled"] = "enter-cancelled";
+  CommuniqueEvent["BeforeLeave"] = "before-leave";
+  CommuniqueEvent["Leave"] = "leave";
+  CommuniqueEvent["LeaveCancelled"] = "leave-cancelled";
+})(CommuniqueEvent || (CommuniqueEvent = {}));
+
+var CommuniqueVariant;
+
+(function (CommuniqueVariant) {
+  CommuniqueVariant["Primary"] = "primary";
+  CommuniqueVariant["Secondary"] = "secondary";
+  CommuniqueVariant["Success"] = "success";
+  CommuniqueVariant["Error"] = "error";
+  CommuniqueVariant["Warning"] = "warning";
+  CommuniqueVariant["Info"] = "info";
+  CommuniqueVariant["Light"] = "light";
+  CommuniqueVariant["Dark"] = "dark";
+})(CommuniqueVariant || (CommuniqueVariant = {}));
+
+var communique_CommuniqueNotification =
+/*#__PURE__*/
+function () {
+  function CommuniqueNotification(notification, options) {
+    _classCallCheck(this, CommuniqueNotification);
+
+    this.$attrs = notification.$attrs;
+    this.$listeners = notification.$listeners;
+    this.component = notification.component;
+    this.delay = notification.delay || 0;
+    this.effect = notification.effect;
+    this.layout = notification.layout || options.defaultLayout;
+    this.message = notification.message;
+    this.timeout = notification.timeout;
+    this.variant = notification.variant;
+    this.variantStyles = _objectSpread({}, options.variantStyles, notification.variantStyles);
+  }
+
+  _createClass(CommuniqueNotification, [{
+    key: "assignUniqueId",
+    value: function assignUniqueId(uid) {
+      this.uid = uid;
+    }
+  }, {
+    key: "assignTimeoutId",
+    value: function assignTimeoutId(timeoutId) {
+      this.timeoutId = timeoutId;
+    }
+  }]);
+
+  return CommuniqueNotification;
+}();
+
+var communique_Communique =
+/*#__PURE__*/
+function () {
+  function Communique() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    _classCallCheck(this, Communique);
+
+    this.layouts = options.layouts || [];
+    this.defaultLayout = options.defaultLayout || 'default';
+    this.variantStyles = options.variantStyles;
+    this.options = options;
+    this.store = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
+      data: function data() {
+        return {
+          queue: []
+        };
+      }
+    });
+  }
+
+  _createClass(Communique, [{
+    key: "notify",
+    value: function notify(notification) {
+      return this.notifier(notification);
+    }
+  }, {
+    key: "success",
+    value: function success(notification) {
+      notification.variant = CommuniqueVariant.Success;
+      return this.notifier(notification);
+    }
+  }, {
+    key: "info",
+    value: function info(notification) {
+      notification.variant = CommuniqueVariant.Info;
+      return this.notifier(notification);
+    }
+  }, {
+    key: "warning",
+    value: function warning(notification) {
+      notification.variant = CommuniqueVariant.Warning;
+      return this.notifier(notification);
+    }
+  }, {
+    key: "error",
+    value: function error(notification) {
+      notification.variant = CommuniqueVariant.Error;
+      return this.notifier(notification);
+    }
+  }, {
+    key: "notifier",
+    value: function notifier(notification) {
+      var _this = this;
+
+      var communiqueNotification = new communique_CommuniqueNotification(notification, this.options);
+      return new Promise(function (resolve) {
+        window.setTimeout(function () {
+          _this.addToQueue(_this.setTimeoutIfDefined(communiqueNotification));
+
+          resolve(communiqueNotification);
+        }, communiqueNotification.delay);
+      });
+    }
+  }, {
+    key: "setTimeoutIfDefined",
+    value: function setTimeoutIfDefined(notification) {
+      var _this2 = this;
+
+      if (notification.timeout) {
+        notification.assignTimeoutId(window.setTimeout(function () {
+          window.clearTimeout(notification.timeoutId);
+
+          _this2.removeFromQueue(notification);
+        }, notification.timeout));
+      }
+
+      return notification;
+    }
+  }, {
+    key: "assignUniqueId",
+    value: function assignUniqueId(notification) {
+      notification.assignUniqueId(Communique.uid += 1);
+      return notification;
+    }
+  }, {
+    key: "addToQueue",
+    value: function addToQueue(notification) {
+      this.queue.unshift(this.assignUniqueId(notification));
+      return Promise.resolve(notification);
+    }
+  }, {
+    key: "removeFromQueue",
+    value: function removeFromQueue(notification) {
+      var index = this.queue.findIndex(function (_ref) {
+        var uid = _ref.uid;
+        return uid === notification.uid;
+      });
+
+      if (index !== -1) {
+        this.queue.splice(index, 1);
+
+        if (notification.timeoutId) {
+          window.clearTimeout(notification.timeoutId);
+        }
+      }
+
+      return Promise.resolve(notification);
+    }
+  }, {
+    key: "queue",
+    get: function get() {
+      return this.store.$data.queue;
+    }
+  }]);
+
+  return Communique;
+}();
+
+
+communique_Communique.uid = 0;
+// CONCATENATED MODULE: ./src/plugin/install.ts
+
+
+var _Vue_;
+var _installed = false;
+function install(Vue, options) {
+  if (_installed && external_commonjs_vue_commonjs2_vue_root_Vue_default.a === Vue) return;
+  _installed = true;
+  _Vue_ = Vue;
+  Vue.prototype.$_communique = new communique_Communique(options);
+}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules//.cache//vue-loader","cacheIdentifier":"545da000-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/plugin/components/CommuniqueWrapper.vue?vue&type=template&id=0aebfbd8&scoped=true&
+var CommuniqueWrappervue_type_template_id_0aebfbd8_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"communique"},_vm._l((_vm.$_communique.queue),function(notification){return _c('CommuniqueNotification',_vm._b({key:notification.uid,attrs:{"notification":notification}},'CommuniqueNotification',notification,false))}))}
+var staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/plugin/components/CommuniqueWrapper.vue?vue&type=template&id=0aebfbd8&scoped=true&
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find.js
 var es6_array_find = __webpack_require__("7514");
 
@@ -2331,7 +2570,7 @@ var es6_string_includes = __webpack_require__("2fdb");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
 var es6_function_name = __webpack_require__("7f7f");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--14-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/communique/CommuniqueNotification.vue?vue&type=script&lang=ts&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--14-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/plugin/components/CommuniqueNotification.vue?vue&type=script&lang=ts&
 
 
 
@@ -2426,8 +2665,8 @@ var es6_function_name = __webpack_require__("7f7f");
     return createElement();
   }
 }));
-// CONCATENATED MODULE: ./src/components/communique/CommuniqueNotification.vue?vue&type=script&lang=ts&
- /* harmony default export */ var communique_CommuniqueNotificationvue_type_script_lang_ts_ = (CommuniqueNotificationvue_type_script_lang_ts_); 
+// CONCATENATED MODULE: ./src/plugin/components/CommuniqueNotification.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_CommuniqueNotificationvue_type_script_lang_ts_ = (CommuniqueNotificationvue_type_script_lang_ts_); 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
 
@@ -2523,8 +2762,8 @@ function normalizeComponent (
   }
 }
 
-// CONCATENATED MODULE: ./src/components/communique/CommuniqueNotification.vue
-var CommuniqueNotification_render, staticRenderFns
+// CONCATENATED MODULE: ./src/plugin/components/CommuniqueNotification.vue
+var CommuniqueNotification_render, CommuniqueNotification_staticRenderFns
 
 
 
@@ -2532,9 +2771,9 @@ var CommuniqueNotification_render, staticRenderFns
 /* normalize component */
 
 var component = normalizeComponent(
-  communique_CommuniqueNotificationvue_type_script_lang_ts_,
+  components_CommuniqueNotificationvue_type_script_lang_ts_,
   CommuniqueNotification_render,
-  staticRenderFns,
+  CommuniqueNotification_staticRenderFns,
   false,
   null,
   null,
@@ -2543,7 +2782,43 @@ var component = normalizeComponent(
 )
 
 component.options.__file = "CommuniqueNotification.vue"
-/* harmony default export */ var communique_CommuniqueNotification = (component.exports);
+/* harmony default export */ var components_CommuniqueNotification = (component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--14-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/plugin/components/CommuniqueWrapper.vue?vue&type=script&lang=ts&
+
+
+/* harmony default export */ var CommuniqueWrappervue_type_script_lang_ts_ = (external_commonjs_vue_commonjs2_vue_root_Vue_default.a.extend({
+  name: 'CommuniqueWrapper',
+  components: {
+    CommuniqueNotification: components_CommuniqueNotification
+  }
+}));
+// CONCATENATED MODULE: ./src/plugin/components/CommuniqueWrapper.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_CommuniqueWrappervue_type_script_lang_ts_ = (CommuniqueWrappervue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/plugin/components/CommuniqueWrapper.vue?vue&type=style&index=0&id=0aebfbd8&scoped=true&lang=css&
+var CommuniqueWrappervue_type_style_index_0_id_0aebfbd8_scoped_true_lang_css_ = __webpack_require__("e1e2");
+
+// CONCATENATED MODULE: ./src/plugin/components/CommuniqueWrapper.vue
+
+
+
+
+
+
+/* normalize component */
+
+var CommuniqueWrapper_component = normalizeComponent(
+  components_CommuniqueWrappervue_type_script_lang_ts_,
+  CommuniqueWrappervue_type_template_id_0aebfbd8_scoped_true_render,
+  staticRenderFns,
+  false,
+  null,
+  "0aebfbd8",
+  null
+  
+)
+
+CommuniqueWrapper_component.options.__file = "CommuniqueWrapper.vue"
+/* harmony default export */ var CommuniqueWrapper = (CommuniqueWrapper_component.exports);
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/arrayWithHoles.js
 function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
@@ -2597,231 +2872,7 @@ var es7_object_entries = __webpack_require__("ffc1");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find-index.js
-var es6_array_find_index = __webpack_require__("20d6");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.promise.js
-var es6_promise = __webpack_require__("551c");
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/classCallCheck.js
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/createClass.js
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-// CONCATENATED MODULE: ./src/plugin/communique.ts
-
-
-
-
-
-
-var CommuniqueEffect;
-
-(function (CommuniqueEffect) {
-  CommuniqueEffect["Scale"] = "scale";
-  CommuniqueEffect["Slide"] = "slide";
-})(CommuniqueEffect || (CommuniqueEffect = {}));
-
-var CommuniqueEvent;
-
-(function (CommuniqueEvent) {
-  CommuniqueEvent["BeforeEnter"] = "before-enter";
-  CommuniqueEvent["Enter"] = "enter";
-  CommuniqueEvent["AfterEnter"] = "after-enter";
-  CommuniqueEvent["EnterCancelled"] = "enter-cancelled";
-  CommuniqueEvent["BeforeLeave"] = "before-leave";
-  CommuniqueEvent["Leave"] = "leave";
-  CommuniqueEvent["LeaveCancelled"] = "leave-cancelled";
-})(CommuniqueEvent || (CommuniqueEvent = {}));
-
-var CommuniqueVariant;
-
-(function (CommuniqueVariant) {
-  CommuniqueVariant["Primary"] = "primary";
-  CommuniqueVariant["Secondary"] = "secondary";
-  CommuniqueVariant["Success"] = "success";
-  CommuniqueVariant["Error"] = "error";
-  CommuniqueVariant["Warning"] = "warning";
-  CommuniqueVariant["Info"] = "info";
-  CommuniqueVariant["Light"] = "light";
-  CommuniqueVariant["Dark"] = "dark";
-})(CommuniqueVariant || (CommuniqueVariant = {}));
-
-var plugin_communique_CommuniqueNotification =
-/*#__PURE__*/
-function () {
-  function CommuniqueNotification(notification, options) {
-    _classCallCheck(this, CommuniqueNotification);
-
-    this.$attrs = notification.$attrs;
-    this.$listeners = notification.$listeners;
-    this.component = notification.component;
-    this.delay = notification.delay || 0;
-    this.effect = notification.effect;
-    this.layout = notification.layout || options.defaultLayout;
-    this.message = notification.message;
-    this.timeout = notification.timeout;
-    this.variant = notification.variant;
-    this.variantStyles = _objectSpread({}, options.variantStyles, notification.variantStyles);
-  }
-
-  _createClass(CommuniqueNotification, [{
-    key: "assignUniqueId",
-    value: function assignUniqueId(uid) {
-      this.uid = uid;
-    }
-  }, {
-    key: "assignTimeoutId",
-    value: function assignTimeoutId(timeoutId) {
-      this.timeoutId = timeoutId;
-    }
-  }]);
-
-  return CommuniqueNotification;
-}();
-
-var communique_Communique =
-/*#__PURE__*/
-function () {
-  function Communique() {
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    _classCallCheck(this, Communique);
-
-    this.layouts = options.layouts || [];
-    this.defaultLayout = options.defaultLayout || 'default';
-    this.variantStyles = options.variantStyles;
-    this.options = options;
-    this.store = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
-      data: function data() {
-        return {
-          queue: []
-        };
-      }
-    });
-  }
-
-  _createClass(Communique, [{
-    key: "notify",
-    value: function notify(notification) {
-      return this.notifier(notification);
-    }
-  }, {
-    key: "success",
-    value: function success(notification) {
-      notification.variant = CommuniqueVariant.Success;
-      return this.notifier(notification);
-    }
-  }, {
-    key: "info",
-    value: function info(notification) {
-      notification.variant = CommuniqueVariant.Info;
-      return this.notifier(notification);
-    }
-  }, {
-    key: "warning",
-    value: function warning(notification) {
-      notification.variant = CommuniqueVariant.Warning;
-      return this.notifier(notification);
-    }
-  }, {
-    key: "error",
-    value: function error(notification) {
-      notification.variant = CommuniqueVariant.Error;
-      return this.notifier(notification);
-    }
-  }, {
-    key: "notifier",
-    value: function notifier(notification) {
-      var _this = this;
-
-      var communiqueNotification = new plugin_communique_CommuniqueNotification(notification, this.options);
-      return new Promise(function (resolve) {
-        window.setTimeout(function () {
-          _this.addToQueue(_this.setTimeoutIfDefined(communiqueNotification));
-
-          resolve(communiqueNotification);
-        }, communiqueNotification.delay);
-      });
-    }
-  }, {
-    key: "setTimeoutIfDefined",
-    value: function setTimeoutIfDefined(notification) {
-      var _this2 = this;
-
-      if (notification.timeout) {
-        notification.assignTimeoutId(window.setTimeout(function () {
-          window.clearTimeout(notification.timeoutId);
-
-          _this2.removeFromQueue(notification);
-        }, notification.timeout));
-      }
-
-      return notification;
-    }
-  }, {
-    key: "assignUniqueId",
-    value: function assignUniqueId(notification) {
-      notification.assignUniqueId(Communique.uid += 1);
-      return notification;
-    }
-  }, {
-    key: "addToQueue",
-    value: function addToQueue(notification) {
-      this.queue.unshift(this.assignUniqueId(notification));
-      return Promise.resolve(notification);
-    }
-  }, {
-    key: "removeFromQueue",
-    value: function removeFromQueue(notification) {
-      var index = this.queue.findIndex(function (_ref) {
-        var uid = _ref.uid;
-        return uid === notification.uid;
-      });
-
-      if (index !== -1) {
-        this.queue.splice(index, 1);
-
-        if (notification.timeoutId) {
-          window.clearTimeout(notification.timeoutId);
-        }
-      }
-
-      return Promise.resolve(notification);
-    }
-  }, {
-    key: "queue",
-    get: function get() {
-      return this.store.$data.queue;
-    }
-  }]);
-
-  return Communique;
-}();
-
-
-communique_Communique.uid = 0;
-communique_Communique.Effect = CommuniqueEffect;
-communique_Communique.Event = CommuniqueEvent;
-communique_Communique.Variant = CommuniqueVariant;
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--14-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/communique/CommuniqueProvider.vue?vue&type=script&lang=ts&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--14-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/plugin/components/CommuniqueProvider.vue?vue&type=script&lang=ts&
 
 
 
@@ -2854,7 +2905,7 @@ communique_Communique.Variant = CommuniqueVariant;
      */
     effect: {
       type: String,
-      default: communique_Communique.Effect.Scale
+      default: CommuniqueEffect.Scale
     },
 
     /**
@@ -2863,7 +2914,7 @@ communique_Communique.Variant = CommuniqueVariant;
      */
     variant: {
       type: String,
-      default: communique_Communique.Variant.Error
+      default: CommuniqueVariant.Error
     },
 
     /**
@@ -2966,9 +3017,9 @@ communique_Communique.Variant = CommuniqueVariant;
     });
   }
 }));
-// CONCATENATED MODULE: ./src/components/communique/CommuniqueProvider.vue?vue&type=script&lang=ts&
- /* harmony default export */ var communique_CommuniqueProvidervue_type_script_lang_ts_ = (CommuniqueProvidervue_type_script_lang_ts_); 
-// CONCATENATED MODULE: ./src/components/communique/CommuniqueProvider.vue
+// CONCATENATED MODULE: ./src/plugin/components/CommuniqueProvider.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_CommuniqueProvidervue_type_script_lang_ts_ = (CommuniqueProvidervue_type_script_lang_ts_); 
+// CONCATENATED MODULE: ./src/plugin/components/CommuniqueProvider.vue
 var CommuniqueProvider_render, CommuniqueProvider_staticRenderFns
 
 
@@ -2977,7 +3028,7 @@ var CommuniqueProvider_render, CommuniqueProvider_staticRenderFns
 /* normalize component */
 
 var CommuniqueProvider_component = normalizeComponent(
-  communique_CommuniqueProvidervue_type_script_lang_ts_,
+  components_CommuniqueProvidervue_type_script_lang_ts_,
   CommuniqueProvider_render,
   CommuniqueProvider_staticRenderFns,
   false,
@@ -2989,67 +3040,9 @@ var CommuniqueProvider_component = normalizeComponent(
 
 CommuniqueProvider_component.options.__file = "CommuniqueProvider.vue"
 /* harmony default export */ var CommuniqueProvider = (CommuniqueProvider_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules//.cache//vue-loader","cacheIdentifier":"2867f158-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/communique/CommuniqueWrapper.vue?vue&type=template&id=5848d3e0&scoped=true&
-var CommuniqueWrappervue_type_template_id_5848d3e0_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"communique"},_vm._l((_vm.$_communique.queue),function(notification){return _c('CommuniqueNotification',_vm._b({key:notification.uid,attrs:{"notification":notification}},'CommuniqueNotification',notification,false))}))}
-var CommuniqueWrappervue_type_template_id_5848d3e0_scoped_true_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/communique/CommuniqueWrapper.vue?vue&type=template&id=5848d3e0&scoped=true&
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--14-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/communique/CommuniqueWrapper.vue?vue&type=script&lang=ts&
-
-
-/* harmony default export */ var CommuniqueWrappervue_type_script_lang_ts_ = (external_commonjs_vue_commonjs2_vue_root_Vue_default.a.extend({
-  name: 'CommuniqueWrapper',
-  components: {
-    CommuniqueNotification: communique_CommuniqueNotification
-  }
-}));
-// CONCATENATED MODULE: ./src/components/communique/CommuniqueWrapper.vue?vue&type=script&lang=ts&
- /* harmony default export */ var communique_CommuniqueWrappervue_type_script_lang_ts_ = (CommuniqueWrappervue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/communique/CommuniqueWrapper.vue?vue&type=style&index=0&id=5848d3e0&scoped=true&lang=css&
-var CommuniqueWrappervue_type_style_index_0_id_5848d3e0_scoped_true_lang_css_ = __webpack_require__("c919");
-
-// CONCATENATED MODULE: ./src/components/communique/CommuniqueWrapper.vue
-
-
-
-
-
-
-/* normalize component */
-
-var CommuniqueWrapper_component = normalizeComponent(
-  communique_CommuniqueWrappervue_type_script_lang_ts_,
-  CommuniqueWrappervue_type_template_id_5848d3e0_scoped_true_render,
-  CommuniqueWrappervue_type_template_id_5848d3e0_scoped_true_staticRenderFns,
-  false,
-  null,
-  "5848d3e0",
-  null
-  
-)
-
-CommuniqueWrapper_component.options.__file = "CommuniqueWrapper.vue"
-/* harmony default export */ var CommuniqueWrapper = (CommuniqueWrapper_component.exports);
-// CONCATENATED MODULE: ./src/plugin/install.ts
-
-
-
-
-
-var _Vue_;
-var _installed = false;
-function install(Vue, options) {
-  if (_installed && external_commonjs_vue_commonjs2_vue_root_Vue_default.a === Vue) return;
-  _installed = true;
-  _Vue_ = Vue;
-  Vue.prototype.$_communique = new communique_Communique(options);
-  Vue.component('CommuniqueNotification', communique_CommuniqueNotification);
-  Vue.component('CommuniqueProvider', CommuniqueProvider);
-  Vue.component('CommuniqueWrapper', CommuniqueWrapper);
-}
 // CONCATENATED MODULE: ./src/plugin/index.ts
+
+
 
 
 communique_Communique.install = install;
@@ -3059,8 +3052,11 @@ var VueCommunique = {
   name: 'vue-communique'
 };
 if (typeof window !== 'undefined' && window.Vue) window.Vue.use(VueCommunique);
+
 /* harmony default export */ var src_plugin = (VueCommunique);
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
+/* concated harmony reexport CommuniqueWrapper */__webpack_require__.d(__webpack_exports__, "CommuniqueWrapper", function() { return CommuniqueWrapper; });
+/* concated harmony reexport CommuniqueProvider */__webpack_require__.d(__webpack_exports__, "CommuniqueProvider", function() { return CommuniqueProvider; });
 
 
 /* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src_plugin);
