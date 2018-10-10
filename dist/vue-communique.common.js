@@ -2275,6 +2275,59 @@ if (typeof window !== 'undefined') {
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
 
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/arrayWithHoles.js
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/iterableToArrayLimit.js
+function _iterableToArrayLimit(arr, i) {
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/nonIterableRest.js
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/slicedToArray.js
+
+
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
+var web_dom_iterable = __webpack_require__("ac6a");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
+var es6_array_iterator = __webpack_require__("cadf");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.entries.js
+var es7_object_entries = __webpack_require__("ffc1");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
+var es6_number_constructor = __webpack_require__("c5f6");
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find-index.js
 var es6_array_find_index = __webpack_require__("20d6");
 
@@ -2531,338 +2584,6 @@ function () {
 
 
 communique_Communique.uid = 0;
-// CONCATENATED MODULE: ./src/plugin/install.ts
-
-
-var _Vue_;
-var _installed = false;
-function install(Vue, options) {
-  if (_installed && external_commonjs_vue_commonjs2_vue_root_Vue_default.a === Vue) return;
-  _installed = true;
-  _Vue_ = Vue;
-  Vue.prototype.$_communique = new communique_Communique(options);
-}
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules//.cache//vue-loader","cacheIdentifier":"545da000-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/plugin/components/CommuniqueWrapper.vue?vue&type=template&id=0aebfbd8&scoped=true&
-var CommuniqueWrappervue_type_template_id_0aebfbd8_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"communique"},_vm._l((_vm.$_communique.queue),function(notification){return _c('CommuniqueNotification',_vm._b({key:notification.uid,attrs:{"notification":notification}},'CommuniqueNotification',notification,false))}))}
-var staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/plugin/components/CommuniqueWrapper.vue?vue&type=template&id=0aebfbd8&scoped=true&
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find.js
-var es6_array_find = __webpack_require__("7514");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
-var es7_array_includes = __webpack_require__("6762");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.includes.js
-var es6_string_includes = __webpack_require__("2fdb");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
-var es6_function_name = __webpack_require__("7f7f");
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--14-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/plugin/components/CommuniqueNotification.vue?vue&type=script&lang=ts&
-
-
-
-
-
-
-/* harmony default export */ var CommuniqueNotificationvue_type_script_lang_ts_ = (external_commonjs_vue_commonjs2_vue_root_Vue_default.a.extend({
-  name: 'CommuniqueNotification',
-  inheritAttrs: false,
-  props: {
-    /**
-     * The opinionated layout to use for the notification.
-     * Layouts: growl | attached | bar | other
-     */
-    layout: {
-      type: String,
-      default: null
-    }
-  },
-  computed: {
-    availableLayouts: function availableLayouts() {
-      return this.$_communique.layouts.map(function (_ref) {
-        var name = _ref.name;
-        return name;
-      });
-    },
-    layoutIsAvailable: function layoutIsAvailable() {
-      return this.availableLayouts.includes(this.layout);
-    },
-    layoutName: function layoutName() {
-      // Capitalize the first letter of the layout to match the component's name
-      return "Layout".concat(this.layout[0].toUpperCase()).concat(this.layout.slice(1));
-    },
-    renderComponent: function renderComponent() {
-      var _this = this;
-
-      // If layout is available assume component cannot be undefined.
-      var _this$$_communique$la = this.$_communique.layouts.find(function (_ref2) {
-        var name = _ref2.name;
-        return name === _this.layout;
-      }),
-          component = _this$$_communique$la.component;
-
-      return component;
-    }
-  },
-  created: function created() {
-    this.validateProps();
-  },
-  methods: {
-    validateProps: function validateProps() {
-      // If the opinionated layout does not have the default value,
-      // validate that it is available
-      if (this.layout) {
-        if (!this.layoutIsAvailable) {
-          return console.warn("Invalid <CommuniqueNotification> layout: ".concat(this.layout, ".\nPlease use one of the following layouts: ").concat(this.availableLayouts));
-        }
-      }
-    },
-    validateCustomLayout: function validateCustomLayout() {
-      // If there's no opinionated layout, scoped slots should be used
-      if (!this.layout) {
-        // Validate that a default scoped slot exists
-        if (!this.$scopedSlots.default) {
-          return console.warn("Invalid <CommuniqueNotification> custom layout: ".concat(this.layout, ".\n            \nCustom layouts need a default scoped slot https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots.\n            \nWant to use an opinionated layout? Use the <CommuniqueNotification> layout prop with any of the following values: ").concat(this.availableLayouts, "."));
-        }
-      }
-    }
-  },
-  render: function render(createElement) {
-    var componentOptions = {
-      attrs: _objectSpread({
-        class: 'communique__notification'
-      }, this.$attrs),
-      on: _objectSpread({}, this.$listeners)
-    };
-
-    if (this.layout) {
-      if (this.layoutIsAvailable) {
-        return createElement(this.renderComponent, componentOptions);
-      }
-
-      return createElement();
-    }
-
-    this.validateCustomLayout();
-
-    if (this.$scopedSlots.default) {
-      return createElement(this.renderComponent, componentOptions, [this.$scopedSlots.default]);
-    }
-
-    return createElement();
-  }
-}));
-// CONCATENATED MODULE: ./src/plugin/components/CommuniqueNotification.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_CommuniqueNotificationvue_type_script_lang_ts_ = (CommuniqueNotificationvue_type_script_lang_ts_); 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-// CONCATENATED MODULE: ./src/plugin/components/CommuniqueNotification.vue
-var CommuniqueNotification_render, CommuniqueNotification_staticRenderFns
-
-
-
-
-/* normalize component */
-
-var component = normalizeComponent(
-  components_CommuniqueNotificationvue_type_script_lang_ts_,
-  CommuniqueNotification_render,
-  CommuniqueNotification_staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-component.options.__file = "CommuniqueNotification.vue"
-/* harmony default export */ var components_CommuniqueNotification = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--14-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/plugin/components/CommuniqueWrapper.vue?vue&type=script&lang=ts&
-
-
-/* harmony default export */ var CommuniqueWrappervue_type_script_lang_ts_ = (external_commonjs_vue_commonjs2_vue_root_Vue_default.a.extend({
-  name: 'CommuniqueWrapper',
-  components: {
-    CommuniqueNotification: components_CommuniqueNotification
-  }
-}));
-// CONCATENATED MODULE: ./src/plugin/components/CommuniqueWrapper.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_CommuniqueWrappervue_type_script_lang_ts_ = (CommuniqueWrappervue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/plugin/components/CommuniqueWrapper.vue?vue&type=style&index=0&id=0aebfbd8&scoped=true&lang=css&
-var CommuniqueWrappervue_type_style_index_0_id_0aebfbd8_scoped_true_lang_css_ = __webpack_require__("e1e2");
-
-// CONCATENATED MODULE: ./src/plugin/components/CommuniqueWrapper.vue
-
-
-
-
-
-
-/* normalize component */
-
-var CommuniqueWrapper_component = normalizeComponent(
-  components_CommuniqueWrappervue_type_script_lang_ts_,
-  CommuniqueWrappervue_type_template_id_0aebfbd8_scoped_true_render,
-  staticRenderFns,
-  false,
-  null,
-  "0aebfbd8",
-  null
-  
-)
-
-CommuniqueWrapper_component.options.__file = "CommuniqueWrapper.vue"
-/* harmony default export */ var CommuniqueWrapper = (CommuniqueWrapper_component.exports);
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/arrayWithHoles.js
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/iterableToArrayLimit.js
-function _iterableToArrayLimit(arr, i) {
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/nonIterableRest.js
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/slicedToArray.js
-
-
-
-function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
-}
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
-var web_dom_iterable = __webpack_require__("ac6a");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
-var es6_array_iterator = __webpack_require__("cadf");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.entries.js
-var es7_object_entries = __webpack_require__("ffc1");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
-var es6_number_constructor = __webpack_require__("c5f6");
-
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--14-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/plugin/components/CommuniqueProvider.vue?vue&type=script&lang=ts&
 
 
@@ -3010,18 +2731,113 @@ var es6_number_constructor = __webpack_require__("c5f6");
 }));
 // CONCATENATED MODULE: ./src/plugin/components/CommuniqueProvider.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_CommuniqueProvidervue_type_script_lang_ts_ = (CommuniqueProvidervue_type_script_lang_ts_); 
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
 // CONCATENATED MODULE: ./src/plugin/components/CommuniqueProvider.vue
-var CommuniqueProvider_render, CommuniqueProvider_staticRenderFns
+var CommuniqueProvider_render, staticRenderFns
 
 
 
 
 /* normalize component */
 
-var CommuniqueProvider_component = normalizeComponent(
+var component = normalizeComponent(
   components_CommuniqueProvidervue_type_script_lang_ts_,
   CommuniqueProvider_render,
-  CommuniqueProvider_staticRenderFns,
+  staticRenderFns,
   false,
   null,
   null,
@@ -3029,11 +2845,197 @@ var CommuniqueProvider_component = normalizeComponent(
   
 )
 
-CommuniqueProvider_component.options.__file = "CommuniqueProvider.vue"
-/* harmony default export */ var CommuniqueProvider = (CommuniqueProvider_component.exports);
+component.options.__file = "CommuniqueProvider.vue"
+/* harmony default export */ var CommuniqueProvider = (component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules//.cache//vue-loader","cacheIdentifier":"545da000-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/plugin/components/CommuniqueWrapper.vue?vue&type=template&id=0aebfbd8&scoped=true&
+var CommuniqueWrappervue_type_template_id_0aebfbd8_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"communique"},_vm._l((_vm.$_communique.queue),function(notification){return _c('CommuniqueNotification',_vm._b({key:notification.uid,attrs:{"notification":notification}},'CommuniqueNotification',notification,false))}))}
+var CommuniqueWrappervue_type_template_id_0aebfbd8_scoped_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/plugin/components/CommuniqueWrapper.vue?vue&type=template&id=0aebfbd8&scoped=true&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find.js
+var es6_array_find = __webpack_require__("7514");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
+var es7_array_includes = __webpack_require__("6762");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.includes.js
+var es6_string_includes = __webpack_require__("2fdb");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
+var es6_function_name = __webpack_require__("7f7f");
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--14-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/plugin/components/CommuniqueNotification.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+/* harmony default export */ var CommuniqueNotificationvue_type_script_lang_ts_ = (external_commonjs_vue_commonjs2_vue_root_Vue_default.a.extend({
+  name: 'CommuniqueNotification',
+  inheritAttrs: false,
+  props: {
+    /**
+     * The opinionated layout to use for the notification.
+     * Layouts: growl | attached | bar | other
+     */
+    layout: {
+      type: String,
+      default: null
+    }
+  },
+  computed: {
+    availableLayouts: function availableLayouts() {
+      return this.$_communique.layouts.map(function (_ref) {
+        var name = _ref.name;
+        return name;
+      });
+    },
+    layoutIsAvailable: function layoutIsAvailable() {
+      return this.availableLayouts.includes(this.layout);
+    },
+    layoutName: function layoutName() {
+      // Capitalize the first letter of the layout to match the component's name
+      return "Layout".concat(this.layout[0].toUpperCase()).concat(this.layout.slice(1));
+    },
+    renderComponent: function renderComponent() {
+      var _this = this;
+
+      // If layout is available assume component cannot be undefined.
+      var _this$$_communique$la = this.$_communique.layouts.find(function (_ref2) {
+        var name = _ref2.name;
+        return name === _this.layout;
+      }),
+          component = _this$$_communique$la.component;
+
+      return component;
+    }
+  },
+  created: function created() {
+    this.validateProps();
+  },
+  methods: {
+    validateProps: function validateProps() {
+      // If the opinionated layout does not have the default value,
+      // validate that it is available
+      if (this.layout) {
+        if (!this.layoutIsAvailable) {
+          return console.warn("Invalid <CommuniqueNotification> layout: ".concat(this.layout, ".\nPlease use one of the following layouts: ").concat(this.availableLayouts));
+        }
+      }
+    },
+    validateCustomLayout: function validateCustomLayout() {
+      // If there's no opinionated layout, scoped slots should be used
+      if (!this.layout) {
+        // Validate that a default scoped slot exists
+        if (!this.$scopedSlots.default) {
+          return console.warn("Invalid <CommuniqueNotification> custom layout: ".concat(this.layout, ".\n            \nCustom layouts need a default scoped slot https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots.\n            \nWant to use an opinionated layout? Use the <CommuniqueNotification> layout prop with any of the following values: ").concat(this.availableLayouts, "."));
+        }
+      }
+    }
+  },
+  render: function render(createElement) {
+    var componentOptions = {
+      attrs: _objectSpread({
+        class: 'communique__notification'
+      }, this.$attrs),
+      on: _objectSpread({}, this.$listeners)
+    };
+
+    if (this.layout) {
+      if (this.layoutIsAvailable) {
+        return createElement(this.renderComponent, componentOptions);
+      }
+
+      return createElement();
+    }
+
+    this.validateCustomLayout();
+
+    if (this.$scopedSlots.default) {
+      return createElement(this.renderComponent, componentOptions, [this.$scopedSlots.default]);
+    }
+
+    return createElement();
+  }
+}));
+// CONCATENATED MODULE: ./src/plugin/components/CommuniqueNotification.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_CommuniqueNotificationvue_type_script_lang_ts_ = (CommuniqueNotificationvue_type_script_lang_ts_); 
+// CONCATENATED MODULE: ./src/plugin/components/CommuniqueNotification.vue
+var CommuniqueNotification_render, CommuniqueNotification_staticRenderFns
+
+
+
+
+/* normalize component */
+
+var CommuniqueNotification_component = normalizeComponent(
+  components_CommuniqueNotificationvue_type_script_lang_ts_,
+  CommuniqueNotification_render,
+  CommuniqueNotification_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+CommuniqueNotification_component.options.__file = "CommuniqueNotification.vue"
+/* harmony default export */ var components_CommuniqueNotification = (CommuniqueNotification_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--14-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/plugin/components/CommuniqueWrapper.vue?vue&type=script&lang=ts&
+
+
+/* harmony default export */ var CommuniqueWrappervue_type_script_lang_ts_ = (external_commonjs_vue_commonjs2_vue_root_Vue_default.a.extend({
+  name: 'CommuniqueWrapper',
+  components: {
+    CommuniqueNotification: components_CommuniqueNotification
+  }
+}));
+// CONCATENATED MODULE: ./src/plugin/components/CommuniqueWrapper.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_CommuniqueWrappervue_type_script_lang_ts_ = (CommuniqueWrappervue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/plugin/components/CommuniqueWrapper.vue?vue&type=style&index=0&id=0aebfbd8&scoped=true&lang=css&
+var CommuniqueWrappervue_type_style_index_0_id_0aebfbd8_scoped_true_lang_css_ = __webpack_require__("e1e2");
+
+// CONCATENATED MODULE: ./src/plugin/components/CommuniqueWrapper.vue
+
+
+
+
+
+
+/* normalize component */
+
+var CommuniqueWrapper_component = normalizeComponent(
+  components_CommuniqueWrappervue_type_script_lang_ts_,
+  CommuniqueWrappervue_type_template_id_0aebfbd8_scoped_true_render,
+  CommuniqueWrappervue_type_template_id_0aebfbd8_scoped_true_staticRenderFns,
+  false,
+  null,
+  "0aebfbd8",
+  null
+  
+)
+
+CommuniqueWrapper_component.options.__file = "CommuniqueWrapper.vue"
+/* harmony default export */ var CommuniqueWrapper = (CommuniqueWrapper_component.exports);
+// CONCATENATED MODULE: ./src/plugin/install.ts
+
+
+
+
+var _Vue_;
+var _installed = false;
+function install(Vue, options) {
+  if (_installed && external_commonjs_vue_commonjs2_vue_root_Vue_default.a === Vue) return;
+  _installed = true;
+  _Vue_ = Vue;
+  Vue.prototype.$_communique = new communique_Communique(options);
+  Vue.component('CommuniqueProvider', CommuniqueProvider);
+  Vue.component('CommuniqueWrapper', CommuniqueWrapper);
+}
 // CONCATENATED MODULE: ./src/plugin/index.ts
-
-
 
 
 communique_Communique.install = install;
@@ -3043,11 +3045,8 @@ var VueCommunique = {
   name: 'vue-communique'
 };
 if (typeof window !== 'undefined' && window.Vue) window.Vue.use(VueCommunique);
-
 /* harmony default export */ var src_plugin = (VueCommunique);
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
-/* concated harmony reexport CommuniqueWrapper */__webpack_require__.d(__webpack_exports__, "CommuniqueWrapper", function() { return CommuniqueWrapper; });
-/* concated harmony reexport CommuniqueProvider */__webpack_require__.d(__webpack_exports__, "CommuniqueProvider", function() { return CommuniqueProvider; });
 
 
 /* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src_plugin);

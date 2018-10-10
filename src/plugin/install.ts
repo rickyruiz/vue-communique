@@ -1,6 +1,6 @@
 import _Vue from 'vue'
-import CommuniqueProvider from './components/communique/CommuniqueProvider.vue'
-import CommuniqueWrapper from './components/communique/CommuniqueWrapper.vue'
+import CommuniqueProvider from './components/CommuniqueProvider.vue'
+import CommuniqueWrapper from './components/CommuniqueWrapper.vue'
 import Communique from './communique'
 
 export let _Vue_: typeof _Vue
