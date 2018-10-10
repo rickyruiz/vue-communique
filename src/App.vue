@@ -1,13 +1,18 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <CommuniqueExample />
-    <CommuniqueWrapper />
+  <div
+    id="app"
+  >
+    <img
+      src="./assets/logo.png"
+    >
+    <CommuniqueExample/>
+    <CommuniqueWrapper/>
   </div>
 </template>
 
 <script lang="ts">
 import Communique from '@/plugin/communique'
+import CommuniqueWrapper from '@/plugin/components/CommuniqueWrapper.vue'
 import Vue from 'vue'
 import CommuniqueExample from './components/communique/CommuniqueExample.vue'
 
@@ -16,6 +21,7 @@ export default Vue.extend({
 
   components: {
     CommuniqueExample,
+    CommuniqueWrapper,
   },
 })
 </script>

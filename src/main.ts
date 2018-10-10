@@ -1,6 +1,6 @@
-import App from './App.vue'
 import Vue from 'vue'
-import './notification'
+import App from './App.vue'
+import './setup'
 
 Vue.config.productionTip = false
 

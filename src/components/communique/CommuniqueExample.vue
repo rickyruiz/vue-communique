@@ -43,15 +43,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import CommuniqueNotification from './CommuniqueNotification.vue'
 import { CommuniqueVariant, CommuniqueEffect } from '@/plugin/communique'
 
 export default Vue.extend({
   name: 'CommuniqueExample',
-
-  components: {
-    CommuniqueNotification,
-  },
 
   data() {
     return {

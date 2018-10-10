@@ -19,8 +19,4 @@ export function install<CommuniquePluginOptions>(
   _Vue_ = Vue
 
   Vue.prototype.$_communique = new Communique(options)
-
-  Vue.component('CommuniqueNotification', CommuniqueNotification)
-  Vue.component('CommuniqueProvider', CommuniqueProvider)
-  Vue.component('CommuniqueWrapper', CommuniqueWrapper)
 }

@@ -25,10 +25,15 @@
 </template>
 
 <script lang="ts">
+import CommuniqueProvider from '@/plugin/components/CommuniqueProvider.vue'
 import Vue from 'vue'
 
 export default Vue.extend({
   name: 'CommuniqueLayoutDefault',
+
+  components: {
+    CommuniqueProvider,
+  },
 
   inheritAttrs: false,
 })
