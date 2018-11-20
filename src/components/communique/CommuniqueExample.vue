@@ -1,6 +1,10 @@
 <template>
   <div>
     <input
+      v-model="title"
+      type="text"
+    >
+    <input
       v-model="message"
       type="text"
     >
@@ -54,6 +58,7 @@ export default Vue.extend({
       layout: 'default',
       variant: CommuniqueVariant.Primary,
       effect: CommuniqueEffect.Scale,
+      title: 'Example',
       message: 'hello world',
 
       // Dropdown options
@@ -78,6 +83,7 @@ export default Vue.extend({
   methods: {
     async push(): Promise<void> {
       this.$_communique.notify({
+        title: this.title,
         message: this.message,
         layout: this.layout,
         variant: this.variant,

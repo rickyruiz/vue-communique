@@ -16,6 +16,14 @@ export default Vue.extend({
     },
 
     /**
+     * The optional title shown in the alert.
+     */
+    title: {
+      type: String,
+      default: null,
+    },
+
+    /**
      * The message shown in the alert.
      */
     message: {
@@ -130,6 +138,7 @@ export default Vue.extend({
   render(createElement): any {
     return this.$scopedSlots.default({
       uid: this.notification.uid,
+      title: this.notification.title,
       message: this.notification.message,
       effect: this.notification.effect,
       variant: this.notification.variant,

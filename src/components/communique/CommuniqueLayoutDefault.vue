@@ -5,6 +5,7 @@
     <transition
       slot-scope="{
         uid,
+        title,
         message,
         effect,
         close,
@@ -17,7 +18,10 @@
         @click="close"
       >
         <slot>
-          <span>{{ message }}</span>
+          <p
+            v-if="title"
+          >{{ title }}</p>
+          <p>{{ message }}</p>
         </slot>
       </li>
     </transition>
