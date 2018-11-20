@@ -50,6 +50,7 @@ export declare class CommuniqueNotification implements ICommuniqueNotification {
   delay?: number
   effect?: string
   layout?: string | Component
+  icon?: string
   title?: string
   message: string
   timeout?: number
@@ -81,6 +82,7 @@ export interface ICommuniqueNotification {
   delay?: number
   effect?: string
   layout?: string | Component
+  icon?: string
   title?: string
   message: string
   timeout?: number

@@ -39,6 +39,7 @@ class CommuniqueNotification implements ICommuniqueNotification {
   delay?: number
   effect?: string
   layout?: string | Component
+  icon?: string
   title?: string
   message: string
   timeout?: number
@@ -55,6 +56,7 @@ class CommuniqueNotification implements ICommuniqueNotification {
     this.delay = notification.delay || 0
     this.effect = notification.effect
     this.layout = notification.layout || options.defaultLayout
+    this.icon = notification.icon
     this.title = notification.title
     this.message = notification.message
     this.timeout = notification.timeout
