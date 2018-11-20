@@ -2451,6 +2451,7 @@ function () {
     this.delay = notification.delay || 0;
     this.effect = notification.effect;
     this.layout = notification.layout || options.defaultLayout;
+    this.icon = notification.icon;
     this.title = notification.title;
     this.message = notification.message;
     this.timeout = notification.timeout;
@@ -2614,6 +2615,14 @@ communique_Communique.uid = 0;
     },
 
     /**
+     * The optional icon shown in the alert.
+     */
+    icon: {
+      type: String,
+      default: null
+    },
+
+    /**
      * The optional title shown in the alert.
      */
     title: {
@@ -2740,6 +2749,7 @@ communique_Communique.uid = 0;
   render: function render(createElement) {
     return this.$scopedSlots.default({
       uid: this.notification.uid,
+      icon: this.notification.icon,
       title: this.notification.title,
       message: this.notification.message,
       effect: this.notification.effect,
