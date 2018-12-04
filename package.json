@@ -34,7 +34,7 @@
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "prepublishOnly": "yarn run build:lib",
-    "release": "bash scripts/release.sh"
+    "release": "powershell scripts/release.sh"
   },
   "devDependencies": {
     "@types/jest": "^23.3.10",
