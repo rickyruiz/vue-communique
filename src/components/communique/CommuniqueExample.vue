@@ -58,7 +58,7 @@ export default Vue.extend({
       layout: 'default',
       variant: CommuniqueVariant.Primary,
       effect: CommuniqueEffect.Scale,
-      title: 'Example',
+      title: 'Notification',
       message: 'hello world',
 
       // Dropdown options
@@ -69,8 +69,8 @@ export default Vue.extend({
   },
 
   watch: {
-    '$_communique.queue'() {
-      console.log('queue changed')
+    '$_communique.queue'(queue) {
+      console.log('queue changed', queue)
     },
   },
 
@@ -85,7 +85,7 @@ export default Vue.extend({
       this.$_communique.notify({
         title: this.title,
         message: this.message,
-        layout: this.layout,
+        // layout: this.layout,
         variant: this.variant,
         effect: this.effect,
         // variantStyles: {

@@ -1,5 +1,4 @@
 <script lang="ts">
-import { CommuniqueEffect, CommuniqueVariant } from '@/plugin/communique'
 import Vue from 'vue'
 import { CommuniqueNotification } from '../../../types/communique'
 
@@ -14,124 +13,36 @@ export default Vue.extend({
       type: Object as () => CommuniqueNotification,
       default: null,
     },
-
-    /**
-     * The optional icon shown in the alert.
-     */
-    icon: {
-      type: String,
-      default: null,
-    },
-
-    /**
-     * The optional title shown in the alert.
-     */
-    title: {
-      type: String,
-      default: null,
-    },
-
-    /**
-     * The message shown in the alert.
-     */
-    message: {
-      type: String,
-      default: null,
-    },
-
-    /**
-     * The effect for the specified layout.
-     * Effects: scale | slide
-     */
-    effect: {
-      type: String,
-      default: CommuniqueEffect.Scale,
-    },
-
-    /**
-     * The alert variant.
-     * Variants: primary | secondary | success | error | warning | info | light | dark
-     */
-    variant: {
-      type: String,
-      default: CommuniqueVariant.Error,
-    },
-
-    /**
-     * The alert variant css variables.
-     * Ex: { primary: { backgroundColor: 'dodgerblue' } }
-     * Sets the CSS variable --backgroundColor: dodgerblue on the element's style,
-     * when the variant prop is 'primary'.
-     */
-    variantStyles: {
-      type: Object as () => { [key: string]: any },
-      default: () => ({} as { [key: string]: any }),
-    },
-
-    /**
-     * If timeout is enabled and there is no user action, the alert will close
-     * after the following time.
-     */
-    timeout: {
-      type: Number,
-      default: 6000,
-    },
-
-    /**
-     * If enabled, the alert will close after the given timeout.
-     */
-    isTimeoutEnabled: {
-      type: Boolean,
-      default: true,
-    },
-
-    /**
-     * If enabled, the alert will be clickable.
-     */
-    isClickable: {
-      type: Boolean,
-      default: true,
-    },
-
-    /**
-     * If enabled, the alert will close when the user clicks it.
-     */
-    closeOnClick: {
-      type: Boolean,
-      default: true,
-    },
   },
 
-  watch: {
-    variant: {
-      handler() {
-        this.updateElDataSet()
-        this.updateElStyle()
-      },
-      immediate: true,
-    },
+  created() {
+    this.updateElDataSet()
+    this.updateElStyle()
   },
 
   methods: {
     onClick(): void {
-      if (this.isClickable) {
-        this.close()
-      }
+      this.close()
     },
 
     updateElDataSet(): void {
       this.$nextTick(() => {
-        this.$el.dataset.variant = this.variant
+        this.$el.dataset.variant = this.notification.variant
       })
     },
 
     updateElStyle(): void {
       this.$nextTick(() => {
-        const variantStyles = this.variantStyles[this.variant]
-        if (variantStyles) {
-          const style: [string, string | null][] = Object.entries(variantStyles)
+        const { variantStyles, variant } = this.notification
 
-          style.forEach(([cssProp, cssVal]) => {
+        if (!variantStyles || !variant) return
+
+        const styles = variantStyles[variant]
+
+        if (styles) {
+          const cssVariables: [string, string | null][] = Object.entries(styles)
+
+          cssVariables.forEach(([cssProp, cssVal]) => {
             this.$el.style.setProperty(`--${cssProp}`, cssVal)
           })
         }
@@ -143,7 +54,7 @@ export default Vue.extend({
     },
   },
 
-  render(createElement): any {
+  render(): any {
     return this.$scopedSlots.default({
       uid: this.notification.uid,
       icon: this.notification.icon,

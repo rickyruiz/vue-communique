@@ -1,6 +1,6 @@
 <template>
   <CommuniqueProvider
-    v-bind="$attrs"
+    :notification="notification"
   >
     <transition
       slot-scope="{
@@ -13,8 +13,7 @@
       :name="effect"
     >
       <li
-        class="notification"
-        v-on="$listeners"
+        class="communique__notification"
         @click="close"
       >
         <slot>
@@ -39,12 +38,17 @@ export default Vue.extend({
     CommuniqueProvider,
   },
 
-  inheritAttrs: false,
+  props: {
+    notification: {
+      type: Object,
+      default: null,
+    },
+  },
 })
 </script>
 
 <style scoped>
-.notification {
+.communique__notification {
   background-color: var(--backgroundColor);
   color: var(--color);
   padding: var(--padding);

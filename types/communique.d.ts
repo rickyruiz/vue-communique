@@ -49,12 +49,13 @@ export declare class CommuniqueNotification implements ICommuniqueNotification {
   component?: string | Component
   delay?: number
   effect?: string
-  layout?: string | Component
+  layout?: string
   icon?: string
   title?: string
   message: string
   timeout?: number
   variant?: string
+  variantStyles?: Record<string, any>
 
   assignUniqueId(uid: number): void
 
@@ -81,7 +82,7 @@ export interface ICommuniqueNotification {
   component?: string | Component
   delay?: number
   effect?: string
-  layout?: string | Component
+  layout?: string
   icon?: string
   title?: string
   message: string

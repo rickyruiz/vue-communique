@@ -6,7 +6,6 @@
       v-for="notification in $_communique.queue"
       :key="notification.uid"
       :notification="notification"
-      v-bind="notification"
     />
   </ul>
 </template>
@@ -18,7 +17,9 @@ import CommuniqueNotification from './CommuniqueNotification.vue'
 export default Vue.extend({
   name: 'CommuniqueWrapper',
 
-  components: { CommuniqueNotification },
+  components: {
+    CommuniqueNotification,
+  },
 })
 </script>
 

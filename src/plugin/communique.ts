@@ -38,7 +38,7 @@ class CommuniqueNotification implements ICommuniqueNotification {
   component?: string | Component
   delay?: number
   effect?: string
-  layout?: string | Component
+  layout?: string
   icon?: string
   title?: string
   message: string
@@ -87,8 +87,11 @@ export default class Communique {
   store: Vue
 
   constructor(options: CommuniquePluginOptions = {}) {
-    this.layouts = options.layouts || []
-    this.defaultLayout = options.defaultLayout || 'default'
+    options.layouts = options.layouts || []
+    options.defaultLayout = options.defaultLayout || 'default'
+
+    this.layouts = options.layouts
+    this.defaultLayout = options.defaultLayout
     this.variantStyles = options.variantStyles
     this.options = options
 
