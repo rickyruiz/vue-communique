@@ -2537,8 +2537,6 @@ function _createClass(Constructor, protoProps, staticProps) {
 
 
 
-
-
 var CommuniqueEffect;
 
 (function (CommuniqueEffect) {
@@ -2586,7 +2584,7 @@ function () {
     this.icon = notification.icon;
     this.title = notification.title;
     this.message = notification.message;
-    this.timeout = notification.timeout;
+    this.timeout = notification.timeout || options.defaultTimeout;
     this.variant = notification.variant;
     this.variantStyles = _objectSpread({}, options.variantStyles, notification.variantStyles);
   }
@@ -2618,6 +2616,7 @@ function () {
     options.defaultLayout = options.defaultLayout || 'default';
     this.layouts = options.layouts;
     this.defaultLayout = options.defaultLayout;
+    this.defaultTimeout = options.defaultTimeout;
     this.variantStyles = options.variantStyles;
     this.options = options;
     this.store = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
@@ -2635,28 +2634,44 @@ function () {
       return this.notifier(notification);
     }
   }, {
+    key: "primary",
+    value: function primary(notification) {
+      return this.notifier(this.assignVariant(notification, CommuniqueVariant.Primary));
+    }
+  }, {
+    key: "secondary",
+    value: function secondary(notification) {
+      return this.notifier(this.assignVariant(notification, CommuniqueVariant.Secondary));
+    }
+  }, {
     key: "success",
     value: function success(notification) {
-      notification.variant = CommuniqueVariant.Success;
-      return this.notifier(notification);
+      return this.notifier(this.assignVariant(notification, CommuniqueVariant.Success));
     }
   }, {
     key: "info",
     value: function info(notification) {
-      notification.variant = CommuniqueVariant.Info;
-      return this.notifier(notification);
+      return this.notifier(this.assignVariant(notification, CommuniqueVariant.Info));
     }
   }, {
     key: "warning",
     value: function warning(notification) {
-      notification.variant = CommuniqueVariant.Warning;
-      return this.notifier(notification);
+      return this.notifier(this.assignVariant(notification, CommuniqueVariant.Warning));
     }
   }, {
     key: "error",
     value: function error(notification) {
-      notification.variant = CommuniqueVariant.Error;
-      return this.notifier(notification);
+      return this.notifier(this.assignVariant(notification, CommuniqueVariant.Error));
+    }
+  }, {
+    key: "light",
+    value: function light(notification) {
+      return this.notifier(this.assignVariant(notification, CommuniqueVariant.Light));
+    }
+  }, {
+    key: "dark",
+    value: function dark(notification) {
+      return this.notifier(this.assignVariant(notification, CommuniqueVariant.Dark));
     }
   }, {
     key: "notifier",
@@ -2683,6 +2698,25 @@ function () {
 
           _this2.removeFromQueue(notification);
         }, notification.timeout));
+      }
+
+      return notification;
+    }
+  }, {
+    key: "assignVariant",
+    value: function assignVariant(notification, variant) {
+      notification.variant = variant;
+
+      if (!notification.icon && this.variantStyles) {
+        var currentVariant = this.variantStyles[variant];
+
+        if (currentVariant) {
+          var icon = currentVariant['icon'];
+
+          if (icon) {
+            notification.icon = icon;
+          }
+        }
       }
 
       return notification;
