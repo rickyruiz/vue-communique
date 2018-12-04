@@ -33,7 +33,6 @@
     "build:lib": "vue-cli-service build --target lib --name vue-communique src/plugin/index.ts",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "prepublishOnly": "yarn run build:lib",
     "release": "powershell scripts/release.sh"
   },
   "devDependencies": {

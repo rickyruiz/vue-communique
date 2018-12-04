@@ -8,7 +8,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "Releasing $VERSION ..."
   # yarn run test
-  VERSION=$VERSION yarn run build
+  VERSION=$VERSION yarn run build:lib
 
   # commit
   git add -A
