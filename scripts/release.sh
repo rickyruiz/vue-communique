@@ -13,7 +13,7 @@ then
   # commit
   git add -A
   git commit -m "[build] $VERSION"
-  yarn version $VERSION --message "[release] $VERSION"
+  yarn version --new-version $VERSION --message "[release] $VERSION"
 
   # publish
   git push origin refs/tags/v$VERSION
