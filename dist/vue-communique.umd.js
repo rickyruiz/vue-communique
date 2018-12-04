@@ -2579,7 +2579,7 @@ function () {
     this.$listeners = notification.$listeners;
     this.component = notification.component;
     this.delay = notification.delay || 0;
-    this.effect = notification.effect;
+    this.effect = notification.effect || options.defaultEffect;
     this.layout = notification.layout || options.defaultLayout;
     this.icon = notification.icon;
     this.title = notification.title;
@@ -2617,6 +2617,7 @@ function () {
     this.layouts = options.layouts;
     this.defaultLayout = options.defaultLayout;
     this.defaultTimeout = options.defaultTimeout;
+    this.defaultEffect = options.defaultEffect;
     this.variantStyles = options.variantStyles;
     this.options = options;
     this.store = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
