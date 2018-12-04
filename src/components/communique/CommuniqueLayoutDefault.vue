@@ -8,6 +8,7 @@
         title,
         message,
         effect,
+        icon,
         close,
       }"
       :name="effect"
@@ -21,6 +22,7 @@
             v-if="title"
           >{{ title }}</p>
           <p>{{ message }}</p>
+          <p>{{ icon }}</p>
         </slot>
       </li>
     </transition>

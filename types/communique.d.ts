@@ -7,6 +7,7 @@ export declare class Communique {
 
   layouts: LayoutConfig[]
   defaultLayout?: string
+  defaultTimeout?: number
   variantStyles?: Record<string, any>
   options: CommuniquePluginOptions
   store: typeof Vue
@@ -18,6 +19,10 @@ export declare class Communique {
   setTimeoutIfDefined(
     notification: ICommuniqueNotification
   ): CommuniqueNotification
+  assignVariant(
+    notification: ICommuniqueNotification,
+    variant: string
+  ): ICommuniqueNotification
   assignUniqueId(notification: ICommuniqueNotification): CommuniqueNotification
   addToQueue(
     notification: ICommuniqueNotification
@@ -27,6 +32,12 @@ export declare class Communique {
   ): Promise<CommuniqueNotification>
 
   notify(notification: ICommuniqueNotification): Promise<CommuniqueNotification>
+  primary(
+    notification: ICommuniqueNotification
+  ): Promise<CommuniqueNotification>
+  secondary(
+    notification: ICommuniqueNotification
+  ): Promise<CommuniqueNotification>
   success(
     notification: ICommuniqueNotification
   ): Promise<CommuniqueNotification>
@@ -35,7 +46,8 @@ export declare class Communique {
     notification: ICommuniqueNotification
   ): Promise<CommuniqueNotification>
   error(notification: ICommuniqueNotification): Promise<CommuniqueNotification>
-
+  light(notification: ICommuniqueNotification): Promise<CommuniqueNotification>
+  dark(notification: ICommuniqueNotification): Promise<CommuniqueNotification>
   private static uid: number
 
   static install: PluginFunction<CommuniquePluginOptions>
@@ -68,6 +80,7 @@ export declare class CommuniqueNotification implements ICommuniqueNotification {
 export interface CommuniquePluginOptions {
   layouts?: LayoutConfig[]
   defaultLayout?: string
+  defaultTimeout?: number
   variantStyles?: Record<string, any>
 }
 

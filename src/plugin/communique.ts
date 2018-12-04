@@ -59,7 +59,7 @@ class CommuniqueNotification implements ICommuniqueNotification {
     this.icon = notification.icon
     this.title = notification.title
     this.message = notification.message
-    this.timeout = notification.timeout
+    this.timeout = notification.timeout || options.defaultTimeout
     this.variant = notification.variant
     this.variantStyles = {
       ...options.variantStyles,
@@ -82,6 +82,7 @@ class CommuniqueNotification implements ICommuniqueNotification {
 export default class Communique {
   layouts: LayoutConfig[]
   defaultLayout?: string
+  defaultTimeout?: number
   variantStyles?: Record<string, any>
   options: CommuniquePluginOptions
   store: Vue
@@ -92,6 +93,7 @@ export default class Communique {
 
     this.layouts = options.layouts
     this.defaultLayout = options.defaultLayout
+    this.defaultTimeout = options.defaultTimeout
     this.variantStyles = options.variantStyles
     this.options = options
 
@@ -112,30 +114,64 @@ export default class Communique {
     return this.notifier(notification)
   }
 
+  primary(
+    notification: ICommuniqueNotification
+  ): Promise<CommuniqueNotification> {
+    return this.notifier(
+      this.assignVariant(notification, CommuniqueVariant.Primary)
+    )
+  }
+
+  secondary(
+    notification: ICommuniqueNotification
+  ): Promise<CommuniqueNotification> {
+    return this.notifier(
+      this.assignVariant(notification, CommuniqueVariant.Secondary)
+    )
+  }
+
   success(
     notification: ICommuniqueNotification
   ): Promise<CommuniqueNotification> {
-    notification.variant = CommuniqueVariant.Success
-    return this.notifier(notification)
+    return this.notifier(
+      this.assignVariant(notification, CommuniqueVariant.Success)
+    )
   }
 
   info(notification: ICommuniqueNotification): Promise<CommuniqueNotification> {
-    notification.variant = CommuniqueVariant.Info
-    return this.notifier(notification)
+    return this.notifier(
+      this.assignVariant(notification, CommuniqueVariant.Info)
+    )
   }
 
   warning(
     notification: ICommuniqueNotification
   ): Promise<CommuniqueNotification> {
-    notification.variant = CommuniqueVariant.Warning
-    return this.notifier(notification)
+    return this.notifier(
+      this.assignVariant(notification, CommuniqueVariant.Warning)
+    )
   }
 
   error(
     notification: ICommuniqueNotification
   ): Promise<CommuniqueNotification> {
-    notification.variant = CommuniqueVariant.Error
-    return this.notifier(notification)
+    return this.notifier(
+      this.assignVariant(notification, CommuniqueVariant.Error)
+    )
+  }
+
+  light(
+    notification: ICommuniqueNotification
+  ): Promise<CommuniqueNotification> {
+    return this.notifier(
+      this.assignVariant(notification, CommuniqueVariant.Light)
+    )
+  }
+
+  dark(notification: ICommuniqueNotification): Promise<CommuniqueNotification> {
+    return this.notifier(
+      this.assignVariant(notification, CommuniqueVariant.Dark)
+    )
   }
 
   notifier(
@@ -163,6 +199,25 @@ export default class Communique {
           this.removeFromQueue(notification)
         }, notification.timeout)
       )
+    }
+    return notification
+  }
+
+  assignVariant(
+    notification: ICommuniqueNotification,
+    variant: string
+  ): ICommuniqueNotification {
+    notification.variant = variant
+    if (!notification.icon && this.variantStyles) {
+      const currentVariant = this.variantStyles[variant]
+
+      if (currentVariant) {
+        const icon = currentVariant['icon']
+
+        if (icon) {
+          notification.icon = icon
+        }
+      }
     }
     return notification
   }
