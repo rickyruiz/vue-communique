@@ -1,7 +1,7 @@
 {
   "name": "vue-communique",
   "description": "An advanced, flexible Vue notification system.",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "author": {
     "name": "Ricardo Ruiz",
     "email": "ricardo@mrcodigo.com"
