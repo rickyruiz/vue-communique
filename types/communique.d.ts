@@ -8,6 +8,7 @@ export declare class Communique {
   layouts: LayoutConfig[]
   defaultLayout?: string
   defaultTimeout?: number
+  defaultEffect?: string
   variantStyles?: Record<string, any>
   options: CommuniquePluginOptions
   store: typeof Vue
@@ -81,6 +82,7 @@ export interface CommuniquePluginOptions {
   layouts?: LayoutConfig[]
   defaultLayout?: string
   defaultTimeout?: number
+  defaultEffect?: string
   variantStyles?: Record<string, any>
 }
 

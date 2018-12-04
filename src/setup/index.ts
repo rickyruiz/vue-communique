@@ -6,5 +6,6 @@ import variantStyles from './styles'
 Vue.use(VueCommunique, {
   layouts,
   defaultTimeout: 6000,
+  defaultEffect: 'scale',
   variantStyles,
 })
