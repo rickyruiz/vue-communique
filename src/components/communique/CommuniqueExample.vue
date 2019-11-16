@@ -12,30 +12,30 @@
       v-model="variant"
     >
       <option
-        v-for="variant in variants"
-        :key="variant"
-        :value="variant"
-        v-text="variant"
+        v-for="item in variants"
+        :key="item"
+        :value="item"
+        v-text="item"
       />
     </select>
     <select
       v-model="effect"
     >
       <option
-        v-for="effect in effects"
-        :key="effect"
-        :value="effect"
-        v-text="effect"
+        v-for="item in effects"
+        :key="item"
+        :value="item"
+        v-text="item"
       />
     </select>
     <select
       v-model="layout"
     >
       <option
-        v-for="layout in layouts"
-        :key="layout"
-        :value="layout"
-        v-text="layout"
+        v-for="item in layouts"
+        :key="item"
+        :value="item"
+        v-text="item"
       />
     </select>
     <button

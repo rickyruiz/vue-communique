@@ -1,6 +1,7 @@
 <script lang="ts">
-import Vue from 'vue'
-import { CommuniqueNotification } from '../../../types/communique'
+import { writeCssVar } from '@/plugin/utils/css-variables'
+import Vue, { PropType } from 'vue'
+import { CommuniqueNotification } from '../../../types'
 
 export default Vue.extend({
   name: 'CommuniqueProvider',
@@ -10,14 +11,21 @@ export default Vue.extend({
      * The notification instance
      */
     notification: {
-      type: Object as () => CommuniqueNotification,
+      type: Object as PropType<CommuniqueNotification>,
       default: null,
+      required: true,
     },
   },
 
-  created() {
-    this.updateElDataSet()
-    this.updateElStyle()
+  computed: {
+    element(): HTMLElement {
+      return this.$el as HTMLElement
+    },
+  },
+
+  async created() {
+    await this.updateElDataSet()
+    await this.updateElStyle()
   },
 
   methods: {
@@ -25,28 +33,28 @@ export default Vue.extend({
       this.close()
     },
 
-    updateElDataSet(): void {
-      this.$nextTick(() => {
-        this.$el.dataset.variant = this.notification.variant
-      })
+    async updateElDataSet(): Promise<void> {
+      await this.$nextTick()
+
+      this.element.dataset.variant = this.notification.variant
     },
 
-    updateElStyle(): void {
-      this.$nextTick(() => {
-        const { variantStyles, variant } = this.notification
+    async updateElStyle(): Promise<void> {
+      await this.$nextTick()
 
-        if (!variantStyles || !variant) return
+      const { variantStyles, variant } = this.notification
 
-        const styles = variantStyles[variant]
+      if (!variantStyles || !variant) return
 
-        if (styles) {
-          const cssVariables: [string, string | null][] = Object.entries(styles)
+      const styles = variantStyles[variant]
 
-          cssVariables.forEach(([cssProp, cssVal]) => {
-            this.$el.style.setProperty(`--${cssProp}`, cssVal)
-          })
-        }
-      })
+      if (styles) {
+        const cssVariables: [string, string | null][] = Object.entries(styles)
+
+        cssVariables.forEach(([propertyName, value]) =>
+          writeCssVar(this.element, propertyName, `${value}`)
+        )
+      }
     },
 
     close(): void {
@@ -55,15 +63,18 @@ export default Vue.extend({
   },
 
   render(): any {
-    return this.$scopedSlots.default({
-      uid: this.notification.uid,
-      icon: this.notification.icon,
-      title: this.notification.title,
-      message: this.notification.message,
-      effect: this.notification.effect,
-      variant: this.notification.variant,
-      close: this.close,
-    })
+    return (
+      this.$scopedSlots.default &&
+      this.$scopedSlots.default({
+        uid: this.notification.uid,
+        icon: this.notification.icon,
+        title: this.notification.title,
+        message: this.notification.message,
+        effect: this.notification.effect,
+        variant: this.notification.variant,
+        close: this.close,
+      })
+    )
   },
 })
 </script>

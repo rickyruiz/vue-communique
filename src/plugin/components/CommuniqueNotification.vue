@@ -27,7 +27,7 @@ export default Vue.extend({
       return h()
     }
 
-    return h(layoutConfig.component, context.data)
+    return h(layoutConfig.component, context.data, context.children)
   },
 })
 </script>

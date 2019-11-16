@@ -1,6 +1,6 @@
 import _Vue from 'vue'
 import CommuniqueProvider from './components/CommuniqueProvider.vue'
-import CommuniqueWrapper from './components/CommuniqueWrapper.vue'
+import CommuniqueContainer from './components/CommuniqueContainer.vue'
 import Communique from './communique'
 
 export let _Vue_: typeof _Vue
@@ -20,5 +20,5 @@ export function install<CommuniquePluginOptions>(
   Vue.prototype.$_communique = new Communique(options)
 
   Vue.component('CommuniqueProvider', CommuniqueProvider)
-  Vue.component('CommuniqueWrapper', CommuniqueWrapper)
+  Vue.component('CommuniqueContainer', CommuniqueContainer)
 }

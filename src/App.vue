@@ -6,13 +6,16 @@
       src="./assets/logo.png"
     >
     <CommuniqueExample/>
-    <CommuniqueWrapper/>
+    <CommuniqueContainer
+      id="communique-container"
+      tag="ul"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Communique from '@/plugin/communique'
-import CommuniqueWrapper from '@/plugin/components/CommuniqueWrapper.vue'
+import CommuniqueContainer from '@/plugin/components/CommuniqueContainer.vue'
 import Vue from 'vue'
 import CommuniqueExample from './components/communique/CommuniqueExample.vue'
 
@@ -21,7 +24,7 @@ export default Vue.extend({
 
   components: {
     CommuniqueExample,
-    CommuniqueWrapper,
+    CommuniqueContainer,
   },
 })
 </script>
@@ -34,5 +37,17 @@ export default Vue.extend({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#communique-container {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(1, minmax(200px, 1fr));
 }
 </style>

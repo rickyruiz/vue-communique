@@ -2,8 +2,8 @@
   <CommuniqueProvider
     :notification="notification"
   >
-    <transition
-      slot-scope="{
+    <Transition
+      #default="{
         uid,
         title,
         message,
@@ -14,24 +14,31 @@
       :name="effect"
     >
       <li
-        class="communique__notification"
+        class="CommuniqueNotification"
         @click="close"
       >
         <slot>
           <p
             v-if="title"
-          >{{ title }}</p>
-          <p>{{ message }}</p>
-          <p>{{ icon }}</p>
+          >
+            {{ title }}
+          </p>
+          <p>
+            {{ message }}
+          </p>
+          <p>
+            {{ icon }}
+          </p>
         </slot>
       </li>
-    </transition>
+    </Transition>
   </CommuniqueProvider>
 </template>
 
 <script lang="ts">
 import CommuniqueProvider from '@/plugin/components/CommuniqueProvider.vue'
-import Vue from 'vue'
+import Vue, { PropType } from 'vue'
+import { CommuniqueNotification } from '../../../types'
 
 export default Vue.extend({
   name: 'CommuniqueLayoutDefault',
@@ -42,15 +49,16 @@ export default Vue.extend({
 
   props: {
     notification: {
-      type: Object,
+      type: Object as PropType<CommuniqueNotification>,
       default: null,
+      required: true,
     },
   },
 })
 </script>
 
 <style scoped>
-.communique__notification {
+.CommuniqueNotification {
   background-color: var(--backgroundColor);
   color: var(--color);
   padding: var(--padding);
