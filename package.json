@@ -66,6 +66,7 @@
     "core-js": "^3.4.1",
     "eslint": "5.16.0",
     "eslint-plugin-vue": "5.2.3",
+    "lint-staged": "^9.4.3",
     "ts-jest": "^24.1.0",
     "typescript": "^3.7.2",
     "vue": "^2.6.10",
