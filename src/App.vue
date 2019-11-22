@@ -5,7 +5,7 @@
     <img
       src="./assets/logo.png"
     >
-    <CommuniqueExample/>
+    <CommuniqueExample />
     <CommuniqueContainer
       id="communique-container"
       tag="ul"

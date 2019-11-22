@@ -1,9 +1,12 @@
+import { CommuniqueVariantStyles } from 'types'
+
 export default {
   primary: {
-    backgroundColor: '#007bff',
+    backgroundColor: 'hsla(211, 100%, 50%, 1)',
     color: '#fff',
     padding: '1em',
     borderRadius: '4px',
+    boxShadow: '0px 10px 20px hsla(211, 100%, 50%, 0.15)',
   },
 
   secondary: {
@@ -54,4 +57,4 @@ export default {
     padding: '1em',
     borderRadius: '4px',
   },
-}
+} as CommuniqueVariantStyles

@@ -1,24 +1,26 @@
-import _Vue from 'vue'
-import CommuniqueProvider from './components/CommuniqueProvider.vue'
+import _Vue_ from 'vue'
+import mixin from './mixin'
 import CommuniqueContainer from './components/CommuniqueContainer.vue'
-import Communique from './communique'
 
-export let _Vue_: typeof _Vue
+export let Vue: typeof _Vue_
 
 export let _installed = false
 
-export function install<CommuniquePluginOptions>(
-  Vue: typeof _Vue,
-  options?: CommuniquePluginOptions
-): void {
-  if (_installed && _Vue === Vue) return
+export function install(_Vue: typeof _Vue_): void {
+  if (_installed && _Vue === Vue) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.error(
+        '[vue-communique] already installed. Vue.use(Communique) should be called only once.'
+      )
+    }
+    return
+  }
 
   _installed = true
 
-  _Vue_ = Vue
+  Vue = _Vue
 
-  Vue.prototype.$_communique = new Communique(options)
+  Vue.mixin(mixin)
 
-  Vue.component('CommuniqueProvider', CommuniqueProvider)
   Vue.component('CommuniqueContainer', CommuniqueContainer)
 }

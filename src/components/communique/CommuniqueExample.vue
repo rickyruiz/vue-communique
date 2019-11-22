@@ -62,27 +62,27 @@ export default Vue.extend({
       message: 'hello world',
 
       // Dropdown options
-      layouts: this.$_communique.layouts.map(({ name }) => name),
+      layouts: this.$communique.layouts.map(({ name }) => name),
       variants: CommuniqueVariant,
       effects: CommuniqueEffect,
     }
   },
 
   watch: {
-    '$_communique.queue'(queue) {
+    '$communique.queue'(queue) {
       console.log('queue changed', queue)
     },
   },
 
   mounted() {
-    console.log('layouts:', this.$_communique.layouts)
-    console.log('default layout:', this.$_communique.defaultLayout)
-    console.log('variant styles:', this.$_communique.variantStyles)
+    console.log('layouts:', this.$communique.layouts)
+    console.log('default layout:', this.$communique.defaultLayout)
+    console.log('variant styles:', this.$communique.variantStyles)
   },
 
   methods: {
     async push(): Promise<void> {
-      this.$_communique.notify({
+      this.$communique.notify({
         title: this.title,
         message: this.message,
         // layout: this.layout,

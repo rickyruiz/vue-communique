@@ -3,14 +3,27 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: ['plugin:vue/recommended', '@vue/typescript'],
+  extends: ['eslint:recommended', 'plugin:vue/recommended', '@vue/typescript'],
   rules: {
     'no-console': 'off',
     'no-debugger': 'off',
-    'vue/html-closing-bracket-spacing': [
+    'comma-dangle': [
       'error',
       {
-        selfClosingTag: 'never',
+        arrays: 'always-multiline',
+        objects: 'always-multiline',
+        imports: 'always-multiline',
+        exports: 'always-multiline',
+        functions: 'never',
+      },
+    ],
+    semi: ['error', 'never'],
+    quotes: [
+      'error',
+      'single',
+      {
+        avoidEscape: true,
+        allowTemplateLiterals: true,
       },
     ],
   },

@@ -1,65 +1,102 @@
 import Vue, { ComponentOptions, PluginFunction, AsyncComponent } from 'vue'
 
-export type Component = ComponentOptions<Vue> | typeof Vue | AsyncComponent
+export type CommuniqueNotificationComponent =
+  | ComponentOptions<Vue>
+  | typeof Vue
+  | AsyncComponent
 
 export declare class Communique {
-  constructor(options?: CommuniquePluginOptions)
+  constructor(options?: CommuniqueOptions)
 
-  layouts: LayoutConfig[]
+  layouts: CommuniqueLayoutConfig[]
   defaultLayout?: string
   defaultTimeout?: number
   defaultEffect?: string
-  variantStyles?: Record<string, any>
-  options: CommuniquePluginOptions
-  store: typeof Vue
+  variantStyles?: CommuniqueVariantStyles
+  options: CommuniqueOptions
+  store: { queue: CommuniqueNotification[] }
 
   queue: CommuniqueNotification[]
+
+  getNotificationComponent(
+    notification: CommuniqueNotification
+  ): CommuniqueNotificationComponent | undefined
+  getNotificationStyle(
+    notification: CommuniqueNotification
+  ): CommuniqueVariantStyleConfig | undefined
+
   notifier(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification>
   setTimeoutIfDefined(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): CommuniqueNotification
   assignVariant(
-    notification: ICommuniqueNotification,
+    notification: CommuniqueNotificationOptions,
     variant: string
-  ): ICommuniqueNotification
-  assignUniqueId(notification: ICommuniqueNotification): CommuniqueNotification
+  ): CommuniqueNotificationOptions
+  assignNotificationUniqueId(
+    notification: CommuniqueNotificationOptions
+  ): CommuniqueNotification
+  assignNotificationRemoveFunction(
+    notification: CommuniqueNotificationOptions
+  ): CommuniqueNotification
   addToQueue(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification>
   removeFromQueue(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification>
 
-  notify(notification: ICommuniqueNotification): Promise<CommuniqueNotification>
+  notify(
+    notification: CommuniqueNotificationOptions
+  ): Promise<CommuniqueNotification>
   primary(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification>
   secondary(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification>
   success(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification>
-  info(notification: ICommuniqueNotification): Promise<CommuniqueNotification>
+  info(
+    notification: CommuniqueNotificationOptions
+  ): Promise<CommuniqueNotification>
   warning(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification>
-  error(notification: ICommuniqueNotification): Promise<CommuniqueNotification>
-  light(notification: ICommuniqueNotification): Promise<CommuniqueNotification>
-  dark(notification: ICommuniqueNotification): Promise<CommuniqueNotification>
-  private static uid: number
+  error(
+    notification: CommuniqueNotificationOptions
+  ): Promise<CommuniqueNotification>
+  light(
+    notification: CommuniqueNotificationOptions
+  ): Promise<CommuniqueNotification>
+  dark(
+    notification: CommuniqueNotificationOptions
+  ): Promise<CommuniqueNotification>
+  private static id: number
 
-  static install: PluginFunction<CommuniquePluginOptions>
+  private static getNotificationComponent(
+    notification: CommuniqueNotification,
+    layouts: CommuniqueLayoutConfig[]
+  ): CommuniqueNotificationComponent | undefined
+
+  private static getNotificationStyle(
+    notification: CommuniqueNotification
+  ): CommuniqueVariantStyleConfig | undefined
+
+  static install: PluginFunction<never>
+  static version: string
 }
 
-export declare class CommuniqueNotification implements ICommuniqueNotification {
-  constructor(notification: ICommuniqueNotification)
+export declare class CommuniqueNotification
+  implements CommuniqueNotificationOptions {
+  constructor(notification: CommuniqueNotificationOptions)
 
   $attrs?: { [key: string]: string }
   $listeners?: { [key: string]: Function | Function[] }
-  component?: string | Component
+  component?: CommuniqueNotificationComponent
   delay?: number
   effect?: string
   layout?: string
@@ -68,33 +105,41 @@ export declare class CommuniqueNotification implements ICommuniqueNotification {
   message: string
   timeout?: number
   variant?: string
-  variantStyles?: Record<string, any>
+  variantStyles?: CommuniqueVariantStyles
 
-  assignUniqueId(uid: number): void
+  assignUniqueId(id: number): void
 
   assignTimeoutId(timeoutId: number): void
+  assignRemoveFunction(remove: () => Promise<CommuniqueNotification>): void
 
-  public uid: number
+  public id: number
   public timeoutId?: number
+
+  public remove?: () => Promise<CommuniqueNotification>
 }
 
-export interface CommuniquePluginOptions {
-  layouts?: LayoutConfig[]
+export interface CommuniqueOptions {
+  layouts?: CommuniqueLayoutConfig[]
   defaultLayout?: string
   defaultTimeout?: number
   defaultEffect?: string
-  variantStyles?: Record<string, any>
+  variantStyles?: CommuniqueVariantStyles
 }
 
-export interface LayoutConfig {
-  component: Component
+export interface CommuniqueLayoutConfig {
   name: string
+  component: CommuniqueNotificationComponent
 }
 
-export interface ICommuniqueNotification {
+export interface CommuniqueVariantStyles
+  extends Record<string, CommuniqueVariantStyleConfig> {}
+
+export interface CommuniqueVariantStyleConfig extends Record<string, string> {}
+
+export interface CommuniqueNotificationOptions {
   $attrs?: { [key: string]: string }
   $listeners?: { [key: string]: Function | Function[] }
-  component?: string | Component
+  component?: CommuniqueNotificationComponent
   delay?: number
   effect?: string
   layout?: string
@@ -103,5 +148,5 @@ export interface ICommuniqueNotification {
   message: string
   timeout?: number
   variant?: string
-  variantStyles?: Record<string, any>
+  variantStyles?: CommuniqueVariantStyles
 }

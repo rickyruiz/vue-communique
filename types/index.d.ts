@@ -4,8 +4,11 @@ import { Communique } from './communique'
 export default Communique
 
 export {
-  CommuniquePluginOptions,
+  CommuniqueOptions,
   CommuniqueNotification,
-  ICommuniqueNotification,
-  LayoutConfig,
+  CommuniqueNotificationOptions,
+  CommuniqueLayoutConfig,
+  CommuniqueNotificationComponent,
+  CommuniqueVariantStyles,
+  CommuniqueVariantStyleConfig,
 } from './communique'

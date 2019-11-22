@@ -2,24 +2,22 @@
   <Component
     :is="tag"
   >
-    <CommuniqueNotification
-      v-for="notification in $_communique.queue"
-      :key="notification.uid"
+    <Component
+      :is="$communique.getNotificationComponent(notification)"
+      v-for="notification in $communique.queue"
+      :key="notification.id"
       :notification="notification"
+      :data-variant="notification.variant"
+      :style="$communique.getNotificationStyle(notification)"
     />
   </Component>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import CommuniqueNotification from './CommuniqueNotification.vue'
 
 export default Vue.extend({
   name: 'CommuniqueContainer',
-
-  components: {
-    CommuniqueNotification,
-  },
 
   props: {
     tag: {

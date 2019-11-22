@@ -1,10 +1,13 @@
-import Vue, { PluginFunction } from 'vue'
-import { CommuniquePluginOptions } from '../../types'
 import {
-  LayoutConfig,
-  ICommuniqueNotification,
-  Component,
-} from '../../types/communique'
+  CommuniqueLayoutConfig,
+  CommuniqueNotificationComponent,
+  CommuniqueNotificationOptions,
+  CommuniqueOptions,
+  CommuniqueVariantStyles,
+  CommuniqueVariantStyleConfig,
+} from 'types'
+import Vue, { PluginFunction } from 'vue'
+import { assert, warn } from './utils/warn'
 
 export enum CommuniqueEffect {
   Scale = 'scale',
@@ -32,10 +35,10 @@ export enum CommuniqueVariant {
   Dark = 'dark',
 }
 
-class CommuniqueNotification implements ICommuniqueNotification {
+class CommuniqueNotification implements CommuniqueNotificationOptions {
   $attrs?: { [key: string]: string }
   $listeners?: { [key: string]: Function | Function[] }
-  component?: string | Component
+  component?: CommuniqueNotificationComponent
   delay?: number
   effect?: string
   layout?: string
@@ -44,11 +47,11 @@ class CommuniqueNotification implements ICommuniqueNotification {
   message: string
   timeout?: number
   variant?: string
-  variantStyles?: Record<string, any>
+  variantStyles?: CommuniqueVariantStyles
 
   constructor(
-    notification: ICommuniqueNotification,
-    options: CommuniquePluginOptions
+    notification: CommuniqueNotificationOptions,
+    options: CommuniqueOptions
   ) {
     this.$attrs = notification.$attrs
     this.$listeners = notification.$listeners
@@ -67,28 +70,49 @@ class CommuniqueNotification implements ICommuniqueNotification {
     }
   }
 
-  assignUniqueId(uid: number): void {
-    this.uid = uid
+  assignUniqueId(id: number): void {
+    this.id = id
   }
 
   assignTimeoutId(timeoutId: number): void {
     this.timeoutId = timeoutId
   }
 
-  public uid?: number
+  assignRemoveFunction(remove: () => Promise<CommuniqueNotification>): void {
+    this.remove = remove
+  }
+
+  public id?: number
   public timeoutId?: number
+
+  public remove?: () => Promise<CommuniqueNotification>
 }
 
 export default class Communique {
-  layouts: LayoutConfig[]
+  layouts: CommuniqueLayoutConfig[]
   defaultLayout?: string
   defaultTimeout?: number
   defaultEffect?: string
-  variantStyles?: Record<string, any>
-  options: CommuniquePluginOptions
-  store: Vue
+  variantStyles?: CommuniqueVariantStyles
+  options: CommuniqueOptions
+  store: { queue: CommuniqueNotification[] }
 
-  constructor(options: CommuniquePluginOptions = {}) {
+  constructor(options: CommuniqueOptions = {}) {
+    if (process.env.NODE_ENV !== 'production') {
+      assert(
+        Vue,
+        `must call Vue.use(Communique) before creating a communique instance.`
+      )
+      assert(
+        typeof Promise !== 'undefined',
+        `vue-communique requires a Promise polyfill in this browser.`
+      )
+      assert(
+        this instanceof Communique,
+        `Communique must be called with the new operator.`
+      )
+    }
+
     options.layouts = options.layouts || []
     options.defaultLayout = options.defaultLayout || 'default'
 
@@ -99,25 +123,35 @@ export default class Communique {
     this.variantStyles = options.variantStyles
     this.options = options
 
-    this.store = new Vue({
-      data: () => ({
-        queue: [] as CommuniqueNotification[],
-      }),
+    this.store = Vue.observable({
+      queue: [] as CommuniqueNotification[],
     })
   }
 
-  public get queue(): CommuniqueNotification[] {
-    return this.store.$data.queue
+  get queue(): CommuniqueNotification[] {
+    return this.store.queue
+  }
+
+  getNotificationComponent(
+    notification: CommuniqueNotification
+  ): CommuniqueNotificationComponent | undefined {
+    return Communique.getNotificationComponent(notification, this.layouts)
+  }
+
+  getNotificationStyle(
+    notification: CommuniqueNotification
+  ): CommuniqueVariantStyleConfig | undefined {
+    return Communique.getNotificationStyle(notification)
   }
 
   notify(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification> {
     return this.notifier(notification)
   }
 
   primary(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification> {
     return this.notifier(
       this.assignVariant(notification, CommuniqueVariant.Primary)
@@ -125,7 +159,7 @@ export default class Communique {
   }
 
   secondary(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification> {
     return this.notifier(
       this.assignVariant(notification, CommuniqueVariant.Secondary)
@@ -133,21 +167,23 @@ export default class Communique {
   }
 
   success(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification> {
     return this.notifier(
       this.assignVariant(notification, CommuniqueVariant.Success)
     )
   }
 
-  info(notification: ICommuniqueNotification): Promise<CommuniqueNotification> {
+  info(
+    notification: CommuniqueNotificationOptions
+  ): Promise<CommuniqueNotification> {
     return this.notifier(
       this.assignVariant(notification, CommuniqueVariant.Info)
     )
   }
 
   warning(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification> {
     return this.notifier(
       this.assignVariant(notification, CommuniqueVariant.Warning)
@@ -155,7 +191,7 @@ export default class Communique {
   }
 
   error(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification> {
     return this.notifier(
       this.assignVariant(notification, CommuniqueVariant.Error)
@@ -163,21 +199,23 @@ export default class Communique {
   }
 
   light(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification> {
     return this.notifier(
       this.assignVariant(notification, CommuniqueVariant.Light)
     )
   }
 
-  dark(notification: ICommuniqueNotification): Promise<CommuniqueNotification> {
+  dark(
+    notification: CommuniqueNotificationOptions
+  ): Promise<CommuniqueNotification> {
     return this.notifier(
       this.assignVariant(notification, CommuniqueVariant.Dark)
     )
   }
 
   notifier(
-    notification: ICommuniqueNotification
+    notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification> {
     const communiqueNotification = new CommuniqueNotification(
       notification,
@@ -206,9 +244,9 @@ export default class Communique {
   }
 
   assignVariant(
-    notification: ICommuniqueNotification,
+    notification: CommuniqueNotificationOptions,
     variant: string
-  ): ICommuniqueNotification {
+  ): CommuniqueNotificationOptions {
     notification.variant = variant
     if (!notification.icon && this.variantStyles) {
       const currentVariant = this.variantStyles[variant]
@@ -224,22 +262,35 @@ export default class Communique {
     return notification
   }
 
-  assignUniqueId(notification: CommuniqueNotification): CommuniqueNotification {
-    notification.assignUniqueId((Communique.uid += 1))
+  assignNotificationUniqueId(
+    notification: CommuniqueNotification
+  ): CommuniqueNotification {
+    notification.assignUniqueId((Communique.id += 1))
+    return notification
+  }
+
+  assignNotificationRemoveFunction(
+    notification: CommuniqueNotification
+  ): CommuniqueNotification {
+    notification.assignRemoveFunction(() => this.removeFromQueue(notification))
     return notification
   }
 
   addToQueue(
     notification: CommuniqueNotification
   ): Promise<CommuniqueNotification> {
-    this.queue.unshift(this.assignUniqueId(notification))
+    this.queue.unshift(
+      this.assignNotificationUniqueId(
+        this.assignNotificationRemoveFunction(notification)
+      )
+    )
     return Promise.resolve(notification)
   }
 
   removeFromQueue(
     notification: CommuniqueNotification
   ): Promise<CommuniqueNotification> {
-    const index = this.queue.findIndex(({ uid }) => uid === notification.uid)
+    const index = this.queue.findIndex(({ id }) => id === notification.id)
     if (index !== -1) {
       this.queue.splice(index, 1)
 
@@ -250,8 +301,54 @@ export default class Communique {
     return Promise.resolve(notification)
   }
 
-  private static uid = 0
+  private static id = 0
 
-  static install: PluginFunction<CommuniquePluginOptions>
+  private static getNotificationComponent(
+    notification: CommuniqueNotification,
+    layouts: CommuniqueLayoutConfig[]
+  ): CommuniqueNotificationComponent | undefined {
+    let component: CommuniqueNotificationComponent | undefined
+
+    const layout = notification.layout
+
+    if (notification.component) {
+      component = notification.component
+    } else if (layout) {
+      const layoutConfig = layouts.find(({ name }) => name === layout)
+
+      warn(
+        Boolean(layoutConfig),
+        `invalid layout: ${layout}.\nPlease use one of the following layouts: ${layouts.map(
+          ({ name }) => name
+        )}.`
+      )
+
+      component = layoutConfig && layoutConfig.component
+    }
+
+    return component
+  }
+
+  private static getNotificationStyle(
+    notification: CommuniqueNotification
+  ): CommuniqueVariantStyleConfig | undefined {
+    const { variantStyles, variant } = notification
+
+    if (!variantStyles || !variant) return
+
+    const styles = variantStyles[variant]
+
+    if (!styles) return
+
+    let style: CommuniqueVariantStyleConfig = {}
+
+    for (const key in styles) {
+      style[`--${key}`] = styles[key]
+    }
+
+    return style
+  }
+
+  static install: PluginFunction<CommuniqueOptions>
   static version: string
 }

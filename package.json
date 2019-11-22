@@ -39,6 +39,16 @@
     "docs:build": "vuepress build vuepress -d docs",
     "docs:clean": "rm -rf docs/**"
   },
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "node scripts/verifyCommitMsg.js"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "@types/jest": "^24.0.22",
     "@types/webpack": "^4.39.8",
@@ -53,6 +63,7 @@
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
+    "core-js": "^3.4.1",
     "eslint": "5.16.0",
     "eslint-plugin-vue": "5.2.3",
     "ts-jest": "^24.1.0",
