@@ -6,10 +6,7 @@
       src="./assets/logo.png"
     >
     <CommuniqueExample />
-    <CommuniqueContainer
-      id="communique-container"
-      tag="ul"
-    />
+    <CommuniqueContainer />
   </div>
 </template>
 
@@ -36,17 +33,5 @@ export default Vue.extend({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-#communique-container {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  position: absolute;
-  left: 30px;
-  bottom: 30px;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(1, minmax(200px, 1fr));
 }
 </style>

@@ -8,9 +8,12 @@ Vue.use(Communique)
 
 const communique = new Communique({
   layouts,
-  defaultTimeout: 6000,
+  // defaultDelay: 1000,
+  // defaultTimeout: 6000,
   defaultEffect: 'scale',
   variantStyles,
 })
+
+console.dir(Vue)
 
 export default communique as ICommunique

@@ -46,8 +46,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
 import { CommuniqueVariant, CommuniqueEffect } from '@/plugin/communique'
+import Vue from 'vue'
 
 export default Vue.extend({
   name: 'CommuniqueExample',
@@ -82,7 +82,7 @@ export default Vue.extend({
 
   methods: {
     async push(): Promise<void> {
-      this.$communique.notify({
+      const notification = await this.$communique.notify({
         title: this.title,
         message: this.message,
         // layout: this.layout,
@@ -101,6 +101,8 @@ export default Vue.extend({
         //   },
         // },
       })
+
+      console.log('pushed', notification)
     },
   },
 })

@@ -36,8 +36,7 @@ export enum CommuniqueVariant {
 }
 
 class CommuniqueNotification implements CommuniqueNotificationOptions {
-  $attrs?: { [key: string]: string }
-  $listeners?: { [key: string]: Function | Function[] }
+  $attrs?: Record<string, string | Function | Function[]>
   component?: CommuniqueNotificationComponent
   delay?: number
   effect?: string
@@ -54,9 +53,8 @@ class CommuniqueNotification implements CommuniqueNotificationOptions {
     options: CommuniqueOptions
   ) {
     this.$attrs = notification.$attrs
-    this.$listeners = notification.$listeners
     this.component = notification.component
-    this.delay = notification.delay || 0
+    this.delay = notification.delay || options.defaultDelay || 0
     this.effect = notification.effect || options.defaultEffect
     this.layout = notification.layout || options.defaultLayout
     this.icon = notification.icon
@@ -91,6 +89,7 @@ class CommuniqueNotification implements CommuniqueNotificationOptions {
 export default class Communique {
   layouts: CommuniqueLayoutConfig[]
   defaultLayout?: string
+  defaultDelay?: number
   defaultTimeout?: number
   defaultEffect?: string
   variantStyles?: CommuniqueVariantStyles
@@ -118,6 +117,7 @@ export default class Communique {
 
     this.layouts = options.layouts
     this.defaultLayout = options.defaultLayout
+    this.defaultDelay = options.defaultDelay
     this.defaultTimeout = options.defaultTimeout
     this.defaultEffect = options.defaultEffect
     this.variantStyles = options.variantStyles
@@ -332,15 +332,17 @@ export default class Communique {
   private static getNotificationStyle(
     notification: CommuniqueNotification
   ): CommuniqueVariantStyleConfig | undefined {
+    let style: CommuniqueVariantStyleConfig = {
+      pointerEvents: 'auto',
+    }
+
     const { variantStyles, variant } = notification
 
-    if (!variantStyles || !variant) return
+    if (!variantStyles || !variant) return style
 
     const styles = variantStyles[variant]
 
-    if (!styles) return
-
-    let style: CommuniqueVariantStyleConfig = {}
+    if (!styles) return style
 
     for (const key in styles) {
       style[`--${key}`] = styles[key]

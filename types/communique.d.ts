@@ -1,6 +1,7 @@
 import Vue, { ComponentOptions, PluginFunction, AsyncComponent } from 'vue'
 
 export type CommuniqueNotificationComponent =
+  | Vue
   | ComponentOptions<Vue>
   | typeof Vue
   | AsyncComponent
@@ -10,6 +11,7 @@ export declare class Communique {
 
   layouts: CommuniqueLayoutConfig[]
   defaultLayout?: string
+  defaultDelay?: number
   defaultTimeout?: number
   defaultEffect?: string
   variantStyles?: CommuniqueVariantStyles
@@ -94,8 +96,7 @@ export declare class CommuniqueNotification
   implements CommuniqueNotificationOptions {
   constructor(notification: CommuniqueNotificationOptions)
 
-  $attrs?: { [key: string]: string }
-  $listeners?: { [key: string]: Function | Function[] }
+  $attrs?: Record<string, string | Function | Function[]>
   component?: CommuniqueNotificationComponent
   delay?: number
   effect?: string
@@ -121,6 +122,7 @@ export declare class CommuniqueNotification
 export interface CommuniqueOptions {
   layouts?: CommuniqueLayoutConfig[]
   defaultLayout?: string
+  defaultDelay?: number
   defaultTimeout?: number
   defaultEffect?: string
   variantStyles?: CommuniqueVariantStyles
@@ -137,8 +139,7 @@ export interface CommuniqueVariantStyles
 export interface CommuniqueVariantStyleConfig extends Record<string, string> {}
 
 export interface CommuniqueNotificationOptions {
-  $attrs?: { [key: string]: string }
-  $listeners?: { [key: string]: Function | Function[] }
+  $attrs?: Record<string, string | Function | Function[]>
   component?: CommuniqueNotificationComponent
   delay?: number
   effect?: string

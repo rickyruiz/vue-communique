@@ -4,8 +4,6 @@ export default [
   {
     name: 'default',
     component: () =>
-      import(
-        /* webpackChunkName: 'communique-layout-default' */ './NotificationDefault.vue'
-      ),
+      import(/* webpackChunkName: 'layout-default' */ './LayoutDefault.vue'),
   },
 ] as CommuniqueLayoutConfig[]

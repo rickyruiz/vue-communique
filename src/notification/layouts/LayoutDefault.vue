@@ -1,52 +1,33 @@
 <template>
-  <CommuniqueProvider
-    #default="{
-        id,
-        title,
-        message,
-        effect,
-        icon,
-        close,
-      }"
-    :notification="notification"
+  <Transition
+    appear
+    :name="notification.effect"
   >
-    <Transition
-      appear
-      :name="effect"
+    <div
+      class="LayoutDefault"
+      @click="notification.remove"
     >
-      <li
-        class="CommuniqueNotification"
-        @click="close"
+      <p
+        v-if="notification.title"
       >
-        <slot>
-          <p
-            v-if="title"
-          >
-            {{ title }}
-          </p>
-          <p>
-            {{ message }}
-          </p>
-          <p>
-            {{ icon }}
-          </p>
-        </slot>
-      </li>
-    </Transition>
-  </CommuniqueProvider>
+        {{ notification.title }}
+      </p>
+      <p>
+        {{ notification.message }}
+      </p>
+      <p>
+        {{ notification.icon }}
+      </p>
+    </div>
+  </Transition>
 </template>
 
 <script lang="ts">
-import CommuniqueProvider from '@/plugin/components/CommuniqueProvider.vue'
 import { CommuniqueNotification } from 'types'
 import Vue, { PropType } from 'vue'
 
 export default Vue.extend({
-  name: 'CommuniqueLayoutDefault',
-
-  components: {
-    CommuniqueProvider,
-  },
+  name: 'LayoutDefault',
 
   props: {
     notification: {
@@ -58,11 +39,12 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.CommuniqueNotification {
+.LayoutDefault {
   background-color: var(--backgroundColor);
   color: var(--color);
   padding: var(--padding);
   border-radius: var(--borderRadius);
+  box-shadow: var(--boxShadow);
   max-width: 300px;
 }
 
