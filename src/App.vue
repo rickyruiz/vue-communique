@@ -14,7 +14,6 @@
 </template>
 
 <script lang="ts">
-import Communique from '@/plugin/communique'
 import CommuniqueContainer from '@/plugin/components/CommuniqueContainer.vue'
 import Vue from 'vue'
 import CommuniqueExample from './components/communique/CommuniqueExample.vue'

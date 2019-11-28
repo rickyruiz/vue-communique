@@ -6,8 +6,8 @@
       :is="$communique.getNotificationComponent(notification)"
       v-for="notification in $communique.queue"
       :key="notification.id"
-      :notification="notification"
       :data-variant="notification.variant"
+      :notification="notification"
       :style="$communique.getNotificationStyle(notification)"
     />
   </Component>
