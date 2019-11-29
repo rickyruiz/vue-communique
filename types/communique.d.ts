@@ -1,9 +1,13 @@
-import Vue, { ComponentOptions, PluginFunction, AsyncComponent } from 'vue'
+import Vue, {
+  AsyncComponent,
+  ComponentOptions,
+  PluginFunction,
+  VueConstructor,
+} from 'vue'
 
 export type CommuniqueNotificationComponent =
-  | Vue
+  | VueConstructor<Vue>
   | ComponentOptions<Vue>
-  | typeof Vue
   | AsyncComponent
 
 export declare class Communique {
@@ -119,35 +123,41 @@ export declare class CommuniqueNotification
   public remove?: () => Promise<CommuniqueNotification>
 }
 
+export interface CommuniquePluginOptions {
+  inject?: boolean;
+}
+
 export interface CommuniqueOptions {
-  layouts?: CommuniqueLayoutConfig[]
-  defaultLayout?: string
-  defaultDelay?: number
-  defaultTimeout?: number
-  defaultEffect?: string
-  variantStyles?: CommuniqueVariantStyles
+  layouts?: CommuniqueLayoutConfig[];
+  defaultLayout?: string;
+  defaultDelay?: number;
+  defaultTimeout?: number;
+  defaultEffect?: string;
+  variantStyles?: CommuniqueVariantStyles;
 }
 
 export interface CommuniqueLayoutConfig {
-  name: string
-  component: CommuniqueNotificationComponent
+  name: string;
+  component: CommuniqueNotificationComponent;
 }
 
-export interface CommuniqueVariantStyles
-  extends Record<string, CommuniqueVariantStyleConfig> {}
+export type CommuniqueVariantStyles = Record<
+  string,
+  CommuniqueVariantStyleConfig
+>
 
-export interface CommuniqueVariantStyleConfig extends Record<string, string> {}
+export type CommuniqueVariantStyleConfig = Record<string, string>
 
 export interface CommuniqueNotificationOptions {
-  $attrs?: Record<string, string | Function | Function[]>
-  component?: CommuniqueNotificationComponent
-  delay?: number
-  effect?: string
-  layout?: string
-  icon?: string
-  title?: string
-  message: string
-  timeout?: number
-  variant?: string
-  variantStyles?: CommuniqueVariantStyles
+  $attrs?: Record<string, string | Function | Function[]>;
+  component?: CommuniqueNotificationComponent;
+  delay?: number;
+  effect?: string;
+  layout?: string;
+  icon?: string;
+  title?: string;
+  message: string;
+  timeout?: number;
+  variant?: string;
+  variantStyles?: CommuniqueVariantStyles;
 }

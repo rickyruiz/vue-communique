@@ -7,12 +7,17 @@ import { Communique } from './communique'
 
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
-    communique?: Communique
+    communique?: Communique;
   }
 }
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $communique: Communique
+    /**
+     * A `Communique` instance, injected via a mixin by VueCommunique.
+     *
+     * This property is not available in the component options when using `inject: false`.
+     */
+    $communique: Communique;
   }
 }

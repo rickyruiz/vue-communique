@@ -3,10 +3,13 @@ import {
   CommuniqueNotificationComponent,
   CommuniqueNotificationOptions,
   CommuniqueOptions,
-  CommuniqueVariantStyles,
   CommuniqueVariantStyleConfig,
+  CommuniqueVariantStyles,
+  CommuniquePluginOptions,
 } from 'types'
-import Vue, { PluginFunction } from 'vue'
+import Vue, { PluginFunction, VueConstructor } from 'vue'
+import { install, VueWithPlugin } from './install'
+import { inBrowser } from './utils/dom'
 import { assert, warn } from './utils/warn'
 
 export enum CommuniqueEffect {
@@ -99,9 +102,18 @@ export default class Communique {
   store: { queue: CommuniqueNotification[] }
 
   constructor(options: CommuniqueOptions = {}) {
+    // Auto install if it is not done yet and `window` has `Vue`.
+    // To allow users to avoid auto-installation in some cases,
+    // this code should be placed here.
+    if (!VueWithPlugin && inBrowser && window.Vue) {
+      Communique.install(
+        (window as typeof window & { Vue: VueConstructor<Vue> }).Vue
+      )
+    }
+
     if (process.env.NODE_ENV !== 'production') {
       assert(
-        Vue,
+        VueWithPlugin,
         `must call Vue.use(Communique) before creating a communique instance.`
       )
       assert(
@@ -334,17 +346,15 @@ export default class Communique {
   private static getNotificationStyle(
     notification: CommuniqueNotification
   ): CommuniqueVariantStyleConfig | undefined {
-    const style: CommuniqueVariantStyleConfig = {
-      pointerEvents: 'auto',
-    }
-
     const { variantStyles, variant } = notification
 
-    if (!variantStyles || !variant) return style
+    if (!variantStyles || !variant) return
 
     const styles = variantStyles[variant]
 
-    if (!styles) return style
+    if (!styles) return
+
+    const style: CommuniqueVariantStyleConfig = {}
 
     for (const key in styles) {
       style[`--${key}`] = styles[key]
@@ -353,6 +363,6 @@ export default class Communique {
     return style
   }
 
-  static install: PluginFunction<CommuniqueOptions>
-  static version: string
+  static install: PluginFunction<CommuniquePluginOptions> = install
+  static version = '__VERSION__'
 }

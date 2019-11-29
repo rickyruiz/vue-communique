@@ -1,12 +1,16 @@
 <template>
-  <Component
-    :is="$communique.getNotificationComponent(notification)"
-    :style="$communique.getNotificationStyle(notification)"
-    :data-variant="notification.variant"
-    :notification="notification"
+  <div
+    :style="computedStyle"
     class="CommuniqueNotificationListItem"
-    v-bind="notification.$attrs"
-  />
+  >
+    <Component
+      :is="computedNotificationComponent"
+      :style="computedNotificationStyle"
+      :data-variant="notification.variant"
+      :notification="notification"
+      v-bind="notification.$attrs"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -20,6 +24,22 @@ export default Vue.extend({
     notification: {
       type: Object as PropType<CommuniqueNotification>,
       required: true,
+    },
+  },
+
+  computed: {
+    computedStyle(): Record<string, string> {
+      return {
+        pointerEvents: 'auto',
+      }
+    },
+
+    computedNotificationComponent() {
+      return this.$communique.getNotificationComponent(this.notification)
+    },
+
+    computedNotificationStyle() {
+      return this.$communique.getNotificationStyle(this.notification)
     },
   },
 })

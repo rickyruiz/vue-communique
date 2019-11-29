@@ -1,14 +1,27 @@
-import './vue'
+import CommuniqueContainer from '@/plugin/components/CommuniqueContainer.vue'
 import { Communique } from './communique'
+import './vue'
 
-export default Communique
-
+//===
+// Classes, Types & Interfaces
+//===
 export {
-  CommuniqueOptions,
-  CommuniqueNotification,
-  CommuniqueNotificationOptions,
   CommuniqueLayoutConfig,
+  CommuniqueNotification,
   CommuniqueNotificationComponent,
-  CommuniqueVariantStyles,
+  CommuniqueNotificationOptions,
+  CommuniqueOptions,
+  CommuniquePluginOptions,
   CommuniqueVariantStyleConfig,
+  CommuniqueVariantStyles,
 } from './communique'
+
+//===
+// Components
+//===
+export { CommuniqueContainer }
+
+//===
+// Default class
+//===
+export default Communique

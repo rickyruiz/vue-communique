@@ -4,8 +4,12 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:vue/recommended',
     'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    // 'prettier/@typescript-eslint',
+    // 'plugin:prettier/recommended',
+    'plugin:vue/recommended',
     // '@vue/prettier',
     '@vue/typescript/recommended',
   ],

@@ -4,7 +4,10 @@ import Vue from 'vue'
 import layouts from './layouts/index'
 import variantStyles from './variant-styles'
 
-Vue.use(Communique)
+Vue.use(Communique, {
+  // Enable or disabled automatic injection
+  inject: true,
+})
 
 const communique = new Communique({
   layouts,
@@ -13,7 +16,5 @@ const communique = new Communique({
   defaultEffect: 'scale',
   variantStyles,
 })
-
-console.dir(Vue)
 
 export default communique as ICommunique

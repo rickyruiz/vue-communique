@@ -1,13 +1,10 @@
 import VueCommunique from './communique'
-import { install } from './install'
-import { inBrowser } from './utils/dom'
 
-VueCommunique.install = install
-VueCommunique.version = '__VERSION__'
+//===
+// Components
+//===
+import CommuniqueContainer from './components/CommuniqueContainer.vue'
 
-if (inBrowser && window.Vue) {
-  // @ts-ignore
-  window.Vue.use(VueCommunique)
-}
+export { CommuniqueContainer }
 
 export default VueCommunique
