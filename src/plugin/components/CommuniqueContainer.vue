@@ -1,8 +1,8 @@
 <template>
   <Component
     :is="tag"
-    :style="computedStyle"
     class="CommuniqueContainer"
+    :style="computedStyle"
   >
     <CommuniqueNotificationList
       :notifications="$communique.queue"

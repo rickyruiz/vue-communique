@@ -235,7 +235,7 @@ export default class Communique {
     if (notification.timeout) {
       notification.assignTimeoutId(
         window.setTimeout(() => {
-          window.clearTimeout(notification.timeoutId!)
+          window.clearTimeout(notification.timeoutId)
           this.removeFromQueue(notification)
         }, notification.timeout)
       )
@@ -332,7 +332,7 @@ export default class Communique {
   private static getNotificationStyle(
     notification: CommuniqueNotification
   ): CommuniqueVariantStyleConfig | undefined {
-    let style: CommuniqueVariantStyleConfig = {
+    const style: CommuniqueVariantStyleConfig = {
       pointerEvents: 'auto',
     }
 
