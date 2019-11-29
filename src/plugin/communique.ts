@@ -14,14 +14,16 @@ export enum CommuniqueEffect {
   Slide = 'slide',
 }
 
-export enum CommuniqueEvent {
-  BeforeEnter = 'before-enter',
-  Enter = 'enter',
-  AfterEnter = 'after-enter',
-  EnterCancelled = 'enter-cancelled',
-  BeforeLeave = 'before-leave',
-  Leave = 'leave',
-  LeaveCancelled = 'leave-cancelled',
+export enum CommuniquePosition {
+  TopLeft = 'top-left',
+  TopCenter = 'top-center',
+  TopRight = 'top-right',
+  CenterLeft = 'center-left',
+  Center = 'center',
+  CenterRight = 'center-right',
+  BottomLeft = 'bottom-left',
+  BottomCenter = 'bottom-center',
+  BottomRight = 'bottom-right',
 }
 
 export enum CommuniqueVariant {
