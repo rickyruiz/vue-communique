@@ -12,7 +12,7 @@ Vue.use(Communique, {
 const communique = new Communique({
   layouts,
   // defaultDelay: 1000,
-  // defaultTimeout: 6000,
+  // defaultDuration: 6000,
   defaultEffect: 'scale',
   variantStyles,
 })

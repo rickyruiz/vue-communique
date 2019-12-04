@@ -1,6 +1,9 @@
 <template>
   <div
     :style="computedStyle"
+    role="status"
+    aria-live="polite"
+    aria-atomic="false"
     class="CommuniqueNotificationListItem"
   >
     <Component
@@ -31,6 +34,8 @@ export default Vue.extend({
     computedStyle(): Record<string, string> {
       return {
         pointerEvents: 'auto',
+        transitionProperty: 'all',
+        transitionDuration: '1s',
       }
     },
 

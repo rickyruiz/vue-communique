@@ -45,11 +45,12 @@ class CommuniqueNotification implements CommuniqueNotificationOptions {
   component?: CommuniqueNotificationComponent
   delay?: number
   effect?: string
+  position?: string
   layout?: string
   icon?: string
   title?: string
   message: string
-  timeout?: number
+  duration?: number
   variant?: string
   variantStyles?: CommuniqueVariantStyles
 
@@ -61,11 +62,12 @@ class CommuniqueNotification implements CommuniqueNotificationOptions {
     this.component = notification.component
     this.delay = notification.delay || options.defaultDelay || 0
     this.effect = notification.effect || options.defaultEffect
+    this.position = notification.position || options.defaultPosition
     this.layout = notification.layout || options.defaultLayout
     this.icon = notification.icon
     this.title = notification.title
     this.message = notification.message
-    this.timeout = notification.timeout || options.defaultTimeout
+    this.duration = notification.duration || options.defaultDuration
     this.variant = notification.variant
     this.variantStyles = {
       ...options.variantStyles,
@@ -95,8 +97,9 @@ export default class Communique {
   layouts: CommuniqueLayoutConfig[]
   defaultLayout?: string
   defaultDelay?: number
-  defaultTimeout?: number
+  defaultDuration?: number
   defaultEffect?: string
+  defaultPosition?: string
   variantStyles?: CommuniqueVariantStyles
   options: CommuniqueOptions
   store: { queue: CommuniqueNotification[] }
@@ -127,13 +130,16 @@ export default class Communique {
     }
 
     options.layouts = options.layouts || []
+    options.defaultPosition =
+      options.defaultPosition || CommuniquePosition.BottomLeft
     options.defaultLayout = options.defaultLayout || 'default'
 
     this.layouts = options.layouts
     this.defaultLayout = options.defaultLayout
     this.defaultDelay = options.defaultDelay
-    this.defaultTimeout = options.defaultTimeout
+    this.defaultDuration = options.defaultDuration
     this.defaultEffect = options.defaultEffect
+    this.defaultPosition = options.defaultPosition
     this.variantStyles = options.variantStyles
     this.options = options
 
@@ -246,12 +252,12 @@ export default class Communique {
   setTimeoutIfDefined(
     notification: CommuniqueNotification
   ): CommuniqueNotification {
-    if (notification.timeout) {
+    if (notification.duration) {
       notification.assignTimeoutId(
         window.setTimeout(() => {
           window.clearTimeout(notification.timeoutId)
           this.removeFromQueue(notification)
-        }, notification.timeout)
+        }, notification.duration)
       )
     }
     return notification

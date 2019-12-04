@@ -16,8 +16,9 @@ export declare class Communique {
   layouts: CommuniqueLayoutConfig[]
   defaultLayout?: string
   defaultDelay?: number
-  defaultTimeout?: number
+  defaultDuration?: number
   defaultEffect?: string
+  defaultPosition?: string
   variantStyles?: CommuniqueVariantStyles
   options: CommuniqueOptions
   store: { queue: CommuniqueNotification[] }
@@ -81,6 +82,7 @@ export declare class Communique {
   dark(
     notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification>
+
   private static id: number
 
   private static getNotificationComponent(
@@ -104,11 +106,12 @@ export declare class CommuniqueNotification
   component?: CommuniqueNotificationComponent
   delay?: number
   effect?: string
+  position?: string
   layout?: string
   icon?: string
   title?: string
   message: string
-  timeout?: number
+  duration?: number
   variant?: string
   variantStyles?: CommuniqueVariantStyles
 
@@ -131,8 +134,9 @@ export interface CommuniqueOptions {
   layouts?: CommuniqueLayoutConfig[];
   defaultLayout?: string;
   defaultDelay?: number;
-  defaultTimeout?: number;
+  defaultDuration?: number;
   defaultEffect?: string;
+  defaultPosition?: string;
   variantStyles?: CommuniqueVariantStyles;
 }
 
@@ -153,11 +157,12 @@ export interface CommuniqueNotificationOptions {
   component?: CommuniqueNotificationComponent;
   delay?: number;
   effect?: string;
+  position?: string;
   layout?: string;
   icon?: string;
   title?: string;
   message: string;
-  timeout?: number;
+  duration?: number;
   variant?: string;
   variantStyles?: CommuniqueVariantStyles;
 }

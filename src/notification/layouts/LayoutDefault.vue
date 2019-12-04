@@ -45,7 +45,6 @@ export default Vue.extend({
   padding: var(--padding);
   border-radius: var(--borderRadius);
   box-shadow: var(--boxShadow);
-  max-width: 300px;
 }
 
 .scale-enter,

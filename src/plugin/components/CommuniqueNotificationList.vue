@@ -1,6 +1,8 @@
 <template>
   <TransitionGroup
     :tag="tag"
+    :style="computedStyle"
+    name="CommuniqueNotificationList"
     class="CommuniqueNotificationList"
   >
     <CommuniqueNotificationListItem
@@ -32,6 +34,33 @@ export default Vue.extend({
     notifications: {
       type: Array as PropType<CommuniqueNotification[]>,
       default: () => [],
+    },
+
+    position: {
+      type: String,
+      default: '',
+    },
+  },
+
+  data() {
+    return {
+      place: {
+        top: 'start',
+        center: 'center',
+        bottom: 'end',
+      } as Record<string, string>,
+    }
+  },
+
+  computed: {
+    computedStyle(): Record<string, string> {
+      const [row] = this.position.split('-')
+
+      return {
+        position: 'relative',
+        display: 'grid',
+        alignContent: this.place[row],
+      }
     },
   },
 })

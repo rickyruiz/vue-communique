@@ -34,4 +34,19 @@ export default Vue.extend({
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.CommuniqueNotificationList-move {
+  transition: transform 1s;
+}
+
+.CommuniqueNotificationList-enter,
+.CommuniqueNotificationList-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.CommuniqueNotificationList-leave-active {
+  position: absolute;
+  width: 100%;
+}
 </style>

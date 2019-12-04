@@ -9,6 +9,16 @@
       type="text"
     >
     <select
+      v-model="position"
+    >
+      <option
+        v-for="item in positions"
+        :key="item"
+        :value="item"
+        v-text="item"
+      />
+    </select>
+    <select
       v-model="variant"
     >
       <option
@@ -46,7 +56,7 @@
 </template>
 
 <script lang="ts">
-import { CommuniqueVariant, CommuniqueEffect } from '@/plugin/communique'
+import { CommuniqueVariant, CommuniqueEffect, CommuniquePosition } from '@/plugin/communique'
 import Vue from 'vue'
 
 export default Vue.extend({
@@ -57,6 +67,7 @@ export default Vue.extend({
       // Communique notification props
       layout: 'default',
       variant: CommuniqueVariant.Primary,
+      position: CommuniquePosition.TopLeft,
       effect: CommuniqueEffect.Scale,
       title: 'Notification',
       message: 'hello world',
@@ -64,6 +75,7 @@ export default Vue.extend({
       // Dropdown options
       layouts: this.$communique.layouts.map(({ name }) => name),
       variants: CommuniqueVariant,
+      positions: CommuniquePosition,
       effects: CommuniqueEffect,
     }
   },
@@ -88,6 +100,7 @@ export default Vue.extend({
         // layout: this.layout,
         variant: this.variant,
         effect: this.effect,
+        position: this.position,
         // variantStyles: {
         //   primary: {
         //     backgroundColor: 'dodgerblue',
