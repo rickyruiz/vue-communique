@@ -6,13 +6,14 @@ import './vue'
 // Classes, Types & Interfaces
 //===
 export {
-  CommuniqueLayoutConfig,
+  CommuniqueComponentConfig,
   CommuniqueNotification,
   CommuniqueNotificationComponent,
   CommuniqueNotificationOptions,
+  CommuniqueNotificationDefaultOptions,
   CommuniqueOptions,
   CommuniquePluginOptions,
-  CommuniqueVariantStyleConfig,
+  CommuniqueStyleConfig,
   CommuniqueVariantStyles,
 } from './communique'
 

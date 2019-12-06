@@ -1,18 +1,3 @@
-<template>
-  <Component
-    :is="tag"
-    class="CommuniqueContainer"
-    :style="computedStyle"
-  >
-    <CommuniqueNotificationList
-      v-for="(list, position) in lists"
-      :key="position"
-      :notifications="list"
-      :position="position"
-    />
-  </Component>
-</template>
-
 <script lang="ts">
 import { warn } from '@/plugin/utils/warn'
 import { CommuniquePosition } from '@/plugin/communique'
@@ -81,12 +66,12 @@ export default Vue.extend({
 
         warn(
           list,
-          `Invalid CommuniqueNotification position: ${notification.position}.\nValid positions: ${this.positions.join(', ')}.`
+          `Invalid CommuniqueNotification position: ${notification.position}.\nValid positions: ${this.positions}.`
         )
 
-        if (list) {
-          list.push(notification)
-        }
+        if (!list) continue
+
+        list.push(notification)
       }
 
       return result
@@ -94,3 +79,18 @@ export default Vue.extend({
   },
 })
 </script>
+
+<template>
+  <Component
+    :is="tag"
+    class="CommuniqueContainer"
+    :style="computedStyle"
+  >
+    <CommuniqueNotificationList
+      v-for="(list, position) in lists"
+      :key="position"
+      :notifications="list"
+      :position="position"
+    />
+  </Component>
+</template>

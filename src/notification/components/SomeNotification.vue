@@ -1,11 +1,28 @@
+<script lang="ts">
+import { CommuniqueNotification } from 'types'
+import Vue, { PropType } from 'vue'
+
+export default Vue.extend({
+  name: 'SomeNotification',
+
+  props: {
+    notification: {
+      type: Object as PropType<CommuniqueNotification>,
+      required: true,
+    },
+  },
+})
+</script>
+
 <template>
   <Transition
     appear
     :name="notification.effect"
   >
     <div
-      class="LayoutDefault"
-      @click="notification.remove"
+      class="SomeNotification"
+      :style="notification.styles"
+      @click="$emit('close')"
     >
       <p
         v-if="notification.title"
@@ -22,29 +39,9 @@
   </Transition>
 </template>
 
-<script lang="ts">
-import { CommuniqueNotification } from 'types'
-import Vue, { PropType } from 'vue'
-
-export default Vue.extend({
-  name: 'LayoutDefault',
-
-  props: {
-    notification: {
-      type: Object as PropType<CommuniqueNotification>,
-      required: true,
-    },
-  },
-})
-</script>
-
 <style scoped>
-.LayoutDefault {
-  background-color: var(--backgroundColor);
-  color: var(--color);
-  padding: var(--padding);
-  border-radius: var(--borderRadius);
-  box-shadow: var(--boxShadow);
+.SomeNotification {
+  font-weight: bold;
 }
 
 .scale-enter,

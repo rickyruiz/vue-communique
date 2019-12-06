@@ -1,7 +1,7 @@
 import Communique from '@/plugin'
 import ICommunique from 'types'
 import Vue from 'vue'
-import layouts from './layouts/index'
+import components from './components/index'
 import variantStyles from './variant-styles'
 
 Vue.use(Communique, {
@@ -10,10 +10,12 @@ Vue.use(Communique, {
 })
 
 const communique = new Communique({
-  layouts,
-  // defaultDelay: 1000,
-  // defaultDuration: 6000,
-  defaultEffect: 'scale',
+  components,
+  defaults: {
+    // delay: 1000,
+    // duration: 6000,
+    effect: 'scale',
+  },
   variantStyles,
 })
 

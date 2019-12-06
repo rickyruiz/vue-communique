@@ -1,16 +1,23 @@
 import {
-  CommuniqueLayoutConfig,
+  CommuniqueComponentConfig,
   CommuniqueNotificationComponent,
   CommuniqueNotificationOptions,
   CommuniqueOptions,
-  CommuniqueVariantStyleConfig,
   CommuniqueVariantStyles,
   CommuniquePluginOptions,
+  CommuniqueStyleConfig,
+  CommuniqueNotificationDefaultOptions,
 } from 'types'
 import Vue, { PluginFunction, VueConstructor } from 'vue'
 import { install, VueWithPlugin } from './install'
 import { inBrowser } from './utils/dom'
 import { assert, warn } from './utils/warn'
+
+const BaseNotification = () =>
+  import(
+    /* webpackChunkName: 'BaseNotification.vue' */
+    './components/opinionated/BaseNotification.vue'
+  )
 
 export enum CommuniqueEffect {
   Scale = 'scale',
@@ -30,49 +37,38 @@ export enum CommuniquePosition {
 }
 
 export enum CommuniqueVariant {
-  Primary = 'primary',
-  Secondary = 'secondary',
   Success = 'success',
   Error = 'error',
   Warning = 'warning',
   Info = 'info',
-  Light = 'light',
-  Dark = 'dark',
 }
 
 class CommuniqueNotification implements CommuniqueNotificationOptions {
   $attrs?: Record<string, string | Function | Function[]>
-  component?: CommuniqueNotificationComponent
-  delay?: number
+  component?: CommuniqueNotificationComponent | string
+  delay: number
   effect?: string
   position?: string
-  layout?: string
   icon?: string
   title?: string
   message: string
   duration?: number
   variant?: string
-  variantStyles?: CommuniqueVariantStyles
+  styles?: CommuniqueStyleConfig
 
-  constructor(
-    notification: CommuniqueNotificationOptions,
-    options: CommuniqueOptions
-  ) {
-    this.$attrs = notification.$attrs
-    this.component = notification.component
-    this.delay = notification.delay || options.defaultDelay || 0
-    this.effect = notification.effect || options.defaultEffect
-    this.position = notification.position || options.defaultPosition
-    this.layout = notification.layout || options.defaultLayout
-    this.icon = notification.icon
-    this.title = notification.title
-    this.message = notification.message
-    this.duration = notification.duration || options.defaultDuration
-    this.variant = notification.variant
-    this.variantStyles = {
-      ...options.variantStyles,
-      ...notification.variantStyles,
-    }
+  constructor(options: CommuniqueNotificationOptions) {
+    this.$attrs = options.$attrs
+    this.delay = options.delay || 0
+    this.effect = options.effect
+    this.position = options.position || CommuniquePosition.BottomLeft
+    this.title = options.title
+    this.message = options.message
+    this.icon = options.icon
+    this.duration = options.duration
+    this.variant = options.variant
+    this.styles = options.styles
+
+    this.component = options.component || BaseNotification
   }
 
   assignUniqueId(id: number): void {
@@ -83,25 +79,14 @@ class CommuniqueNotification implements CommuniqueNotificationOptions {
     this.timeoutId = timeoutId
   }
 
-  assignRemoveFunction(remove: () => Promise<CommuniqueNotification>): void {
-    this.remove = remove
-  }
-
   public id?: number
   public timeoutId?: number
-
-  public remove?: () => Promise<CommuniqueNotification>
 }
 
 export default class Communique {
-  layouts: CommuniqueLayoutConfig[]
-  defaultLayout?: string
-  defaultDelay?: number
-  defaultDuration?: number
-  defaultEffect?: string
-  defaultPosition?: string
+  components: CommuniqueComponentConfig[]
+  defaults?: CommuniqueNotificationDefaultOptions
   variantStyles?: CommuniqueVariantStyles
-  options: CommuniqueOptions
   store: { queue: CommuniqueNotification[] }
 
   constructor(options: CommuniqueOptions = {}) {
@@ -129,19 +114,11 @@ export default class Communique {
       )
     }
 
-    options.layouts = options.layouts || []
-    options.defaultPosition =
-      options.defaultPosition || CommuniquePosition.BottomLeft
-    options.defaultLayout = options.defaultLayout || 'default'
+    this.components = options.components || []
 
-    this.layouts = options.layouts
-    this.defaultLayout = options.defaultLayout
-    this.defaultDelay = options.defaultDelay
-    this.defaultDuration = options.defaultDuration
-    this.defaultEffect = options.defaultEffect
-    this.defaultPosition = options.defaultPosition
+    this.defaults = options.defaults
+
     this.variantStyles = options.variantStyles
-    this.options = options
 
     this.store = Vue.observable({
       queue: [] as CommuniqueNotification[],
@@ -152,38 +129,54 @@ export default class Communique {
     return this.store.queue
   }
 
-  getNotificationComponent(
-    notification: CommuniqueNotification
-  ): CommuniqueNotificationComponent | undefined {
-    return Communique.getNotificationComponent(notification, this.layouts)
-  }
+  getNormalizedNotificationOptions(
+    notificationOptions: CommuniqueNotificationOptions
+  ): CommuniqueNotificationOptions {
+    const normalizedOptions: CommuniqueNotificationOptions = {
+      ...this.defaults,
+      ...notificationOptions,
+    }
 
-  getNotificationStyle(
-    notification: CommuniqueNotification
-  ): CommuniqueVariantStyleConfig | undefined {
-    return Communique.getNotificationStyle(notification)
+    const { component, variant } = normalizedOptions
+
+    // If the component notification option is a string,
+    // look for the component in the components config
+    if (component && typeof component === 'string') {
+      const componentConfig = this.components.find(
+        ({ name }) => name === component
+      )
+
+      warn(
+        Boolean(componentConfig),
+        `invalid component: ${component}.\nPlease use one of the following components: ${this.components.map(
+          ({ name }) => name
+        )}.`
+      )
+
+      normalizedOptions.component = componentConfig && componentConfig.component
+    }
+
+    // If there are styles in the variant styles config,
+    // and the notification has a variant,
+    // copy the variant styles to the notification styles
+    if (this.variantStyles && variant) {
+      const variantStyle = this.variantStyles[variant]
+
+      if (variantStyle) {
+        normalizedOptions.styles = {
+          ...variantStyle,
+          ...normalizedOptions.styles,
+        }
+      }
+    }
+
+    return normalizedOptions
   }
 
   notify(
     notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification> {
     return this.notifier(notification)
-  }
-
-  primary(
-    notification: CommuniqueNotificationOptions
-  ): Promise<CommuniqueNotification> {
-    return this.notifier(
-      this.assignVariant(notification, CommuniqueVariant.Primary)
-    )
-  }
-
-  secondary(
-    notification: CommuniqueNotificationOptions
-  ): Promise<CommuniqueNotification> {
-    return this.notifier(
-      this.assignVariant(notification, CommuniqueVariant.Secondary)
-    )
   }
 
   success(
@@ -218,29 +211,13 @@ export default class Communique {
     )
   }
 
-  light(
-    notification: CommuniqueNotificationOptions
-  ): Promise<CommuniqueNotification> {
-    return this.notifier(
-      this.assignVariant(notification, CommuniqueVariant.Light)
-    )
-  }
-
-  dark(
-    notification: CommuniqueNotificationOptions
-  ): Promise<CommuniqueNotification> {
-    return this.notifier(
-      this.assignVariant(notification, CommuniqueVariant.Dark)
-    )
-  }
-
   notifier(
-    notification: CommuniqueNotificationOptions
+    notificationOptions: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification> {
     const communiqueNotification = new CommuniqueNotification(
-      notification,
-      this.options
+      this.getNormalizedNotificationOptions(notificationOptions)
     )
+
     return new Promise(resolve => {
       window.setTimeout(() => {
         this.addToQueue(this.setTimeoutIfDefined(communiqueNotification))
@@ -268,17 +245,6 @@ export default class Communique {
     variant: string
   ): CommuniqueNotificationOptions {
     notification.variant = variant
-    if (!notification.icon && this.variantStyles) {
-      const currentVariant = this.variantStyles[variant]
-
-      if (currentVariant) {
-        const icon = currentVariant['icon']
-
-        if (icon) {
-          notification.icon = icon
-        }
-      }
-    }
     return notification
   }
 
@@ -289,21 +255,10 @@ export default class Communique {
     return notification
   }
 
-  assignNotificationRemoveFunction(
-    notification: CommuniqueNotification
-  ): CommuniqueNotification {
-    notification.assignRemoveFunction(() => this.removeFromQueue(notification))
-    return notification
-  }
-
   addToQueue(
     notification: CommuniqueNotification
   ): Promise<CommuniqueNotification> {
-    this.queue.unshift(
-      this.assignNotificationUniqueId(
-        this.assignNotificationRemoveFunction(notification)
-      )
-    )
+    this.queue.push(this.assignNotificationUniqueId(notification))
     return Promise.resolve(notification)
   }
 
@@ -322,52 +277,6 @@ export default class Communique {
   }
 
   private static id = 0
-
-  private static getNotificationComponent(
-    notification: CommuniqueNotification,
-    layouts: CommuniqueLayoutConfig[]
-  ): CommuniqueNotificationComponent | undefined {
-    let component: CommuniqueNotificationComponent | undefined
-
-    const layout = notification.layout
-
-    if (notification.component) {
-      component = notification.component
-    } else if (layout) {
-      const layoutConfig = layouts.find(({ name }) => name === layout)
-
-      warn(
-        Boolean(layoutConfig),
-        `invalid layout: ${layout}.\nPlease use one of the following layouts: ${layouts.map(
-          ({ name }) => name
-        )}.`
-      )
-
-      component = layoutConfig && layoutConfig.component
-    }
-
-    return component
-  }
-
-  private static getNotificationStyle(
-    notification: CommuniqueNotification
-  ): CommuniqueVariantStyleConfig | undefined {
-    const { variantStyles, variant } = notification
-
-    if (!variantStyles || !variant) return
-
-    const styles = variantStyles[variant]
-
-    if (!styles) return
-
-    const style: CommuniqueVariantStyleConfig = {}
-
-    for (const key in styles) {
-      style[`--${key}`] = styles[key]
-    }
-
-    return style
-  }
 
   static install: PluginFunction<CommuniquePluginOptions> = install
   static version = '__VERSION__'

@@ -39,10 +39,11 @@
       />
     </select>
     <select
-      v-model="layout"
+      v-if="components.length > 0"
+      v-model="component"
     >
       <option
-        v-for="item in layouts"
+        v-for="item in components"
         :key="item"
         :value="item"
         v-text="item"
@@ -65,15 +66,15 @@ export default Vue.extend({
   data() {
     return {
       // Communique notification props
-      layout: 'default',
-      variant: CommuniqueVariant.Primary,
+      component: '',
+      variant: CommuniqueVariant.Success,
       position: CommuniquePosition.TopLeft,
       effect: CommuniqueEffect.Scale,
       title: 'Notification',
       message: 'hello world',
 
       // Dropdown options
-      layouts: this.$communique.layouts.map(({ name }) => name),
+      components: ['', ...this.$communique.components.map(({ name }) => name)],
       variants: CommuniqueVariant,
       positions: CommuniquePosition,
       effects: CommuniqueEffect,
@@ -87,8 +88,8 @@ export default Vue.extend({
   },
 
   mounted() {
-    console.log('layouts:', this.$communique.layouts)
-    console.log('default layout:', this.$communique.defaultLayout)
+    console.log('components:', this.$communique.components)
+    console.log('default component:', this.$communique.defaults.component)
     console.log('variant styles:', this.$communique.variantStyles)
   },
 
@@ -97,21 +98,14 @@ export default Vue.extend({
       const notification = await this.$communique.notify({
         title: this.title,
         message: this.message,
-        // layout: this.layout,
+        component: this.component,
         variant: this.variant,
         effect: this.effect,
         position: this.position,
-        // variantStyles: {
-        //   primary: {
-        //     backgroundColor: 'dodgerblue',
-        //     color: 'white',
-        //     padding: '1em',
-        //   },
-        //   secondary: {
-        //     backgroundColor: '#41B883',
-        //     color: 'white',
-        //     padding: '1em',
-        //   },
+        // styles: {
+        //   backgroundColor: 'dodgerblue',
+        //   color: 'white',
+        //   padding: '1em',
         // },
       })
 

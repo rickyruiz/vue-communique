@@ -1,21 +1,3 @@
-<template>
-  <div
-    :style="computedStyle"
-    role="status"
-    aria-live="polite"
-    aria-atomic="false"
-    class="CommuniqueNotificationListItem"
-  >
-    <Component
-      :is="computedNotificationComponent"
-      :style="computedNotificationStyle"
-      :data-variant="notification.variant"
-      :notification="notification"
-      v-bind="notification.$attrs"
-    />
-  </div>
-</template>
-
 <script lang="ts">
 import { CommuniqueNotification } from 'types'
 import Vue, { PropType } from 'vue'
@@ -24,10 +6,21 @@ export default Vue.extend({
   name: 'CommuniqueNotificationListItem',
 
   props: {
+    tag: {
+      type: String,
+      default: 'li',
+    },
+
     notification: {
       type: Object as PropType<CommuniqueNotification>,
       required: true,
     },
+  },
+
+  data() {
+    return {
+      isNotificationVisible: true,
+    }
   },
 
   computed: {
@@ -35,17 +28,40 @@ export default Vue.extend({
       return {
         pointerEvents: 'auto',
         transitionProperty: 'all',
-        transitionDuration: '1s',
+        // transitionDuration: '1s',
       }
     },
+  },
 
-    computedNotificationComponent() {
-      return this.$communique.getNotificationComponent(this.notification)
+  methods: {
+    onNotificationClose(): void {
+      this.isNotificationVisible = false
     },
 
-    computedNotificationStyle() {
-      return this.$communique.getNotificationStyle(this.notification)
+    onNotificationDestroyed(): void {
+      this.$communique.removeFromQueue(this.notification)
     },
   },
 })
 </script>
+
+<template>
+  <Component
+    :is="tag"
+    :style="computedStyle"
+    :data-variant="notification.variant"
+    role="status"
+    aria-live="polite"
+    aria-atomic="false"
+    class="CommuniqueNotificationListItem"
+  >
+    <Component
+      :is="notification.component"
+      v-if="isNotificationVisible"
+      :notification="notification"
+      v-bind="notification.$attrs"
+      @close="onNotificationClose"
+      @hook:destroyed="onNotificationDestroyed"
+    />
+  </Component>
+</template>

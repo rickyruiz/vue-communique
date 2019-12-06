@@ -36,13 +36,7 @@ export default Vue.extend({
 }
 
 .CommuniqueNotificationList-move {
-  transition: transform 1s;
-}
-
-.CommuniqueNotificationList-enter,
-.CommuniqueNotificationList-leave-to {
-  opacity: 0;
-  transform: translateY(-30px);
+  transition: transform 200ms;
 }
 
 .CommuniqueNotificationList-leave-active {

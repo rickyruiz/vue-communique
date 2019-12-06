@@ -1,18 +1,3 @@
-<template>
-  <TransitionGroup
-    :tag="tag"
-    :style="computedStyle"
-    name="CommuniqueNotificationList"
-    class="CommuniqueNotificationList"
-  >
-    <CommuniqueNotificationListItem
-      v-for="notification in notifications"
-      :key="notification.id"
-      :notification="notification"
-    />
-  </TransitionGroup>
-</template>
-
 <script lang="ts">
 import { CommuniqueNotification } from 'types'
 import Vue, { PropType } from 'vue'
@@ -28,7 +13,7 @@ export default Vue.extend({
   props: {
     tag: {
       type: String,
-      default: 'div',
+      default: 'ul',
     },
 
     notifications: {
@@ -40,28 +25,69 @@ export default Vue.extend({
       type: String,
       default: '',
     },
-  },
 
-  data() {
-    return {
-      place: {
-        top: 'start',
-        center: 'center',
-        bottom: 'end',
-      } as Record<string, string>,
-    }
+    gap: {
+      type: String,
+      default: '1rem',
+    },
   },
 
   computed: {
-    computedStyle(): Record<string, string> {
+    place(): [string, string, number] {
       const [row] = this.position.split('-')
+
+      const layout = {
+        top: ['start', 'stretch', -1],
+        center: ['center', 'stretch', -1],
+        bottom: ['end', 'stretch', 1],
+      } as Record<string, [string, string, number]>
+
+      return layout[row]
+    },
+
+    computedClass(): string[] {
+      return ['CommuniqueNotificationList', `CommuniqueNotificationList--${this.position}`]
+    },
+
+    computedStyle(): Record<string, string> {
+      const [alignContent, justifyContent] = this.place
 
       return {
         position: 'relative',
         display: 'grid',
-        alignContent: this.place[row],
+        gridAutoFlow: 'row',
+        alignContent,
+        justifyContent,
+        gridGap: this.gap,
+        listStyleType: 'none',
+        padding: '0px',
+        margin: '0px',
       }
+    },
+
+    notificationStyle(): (notificationId: number) => Record<string, string> {
+      const [,, orderFactor] = this.place
+      return (notificationId: number) => ({
+        order: `${notificationId * orderFactor}`,
+      })
     },
   },
 })
 </script>
+
+<template>
+  <TransitionGroup
+    :tag="tag"
+    :style="computedStyle"
+    :class="computedClass"
+    :data-position="position"
+    name="CommuniqueNotificationList"
+  >
+    <CommuniqueNotificationListItem
+      v-for="notification in notifications"
+      :key="notification.id"
+      :notification="notification"
+      :style="notificationStyle(notification.id)"
+    />
+  </TransitionGroup>
+</template>
