@@ -281,5 +281,5 @@ export default class Communique {
   private static id = 0
 
   static install: PluginFunction<CommuniquePluginOptions> = install
-  static version = '__VERSION__'
+  static version = process.env.VUE_APP_VERSION
 }
