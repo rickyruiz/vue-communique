@@ -920,7 +920,7 @@ function () {
 
 communique_Communique.id = 0;
 communique_Communique.install = install;
-communique_Communique.version = "0.0.14";
+communique_Communique.version = "0.0.15";
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"61e57f2a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/plugin/components/CommuniqueContainer.vue?vue&type=template&id=5d7555c4&scoped=true&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.tag,{tag:"Component",staticClass:"CommuniqueContainer"},_vm._l((_vm.lists),function(list,position){return _c('CommuniqueNotificationList',{key:position,attrs:{"notifications":list,"position":position}})}),1)}
 var staticRenderFns = []
