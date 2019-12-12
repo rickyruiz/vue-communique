@@ -51,7 +51,7 @@ export declare class Communique {
 
   private static id: number
 
-  static install: PluginFunction<never>
+  static install: PluginFunction<CommuniquePluginOptions>
   static version: string
 }
 
