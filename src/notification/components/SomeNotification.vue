@@ -17,7 +17,7 @@ export default Vue.extend({
 <template>
   <Transition
     appear
-    :name="notification.effect"
+    :name="notification.transition"
   >
     <div
       class="SomeNotification"

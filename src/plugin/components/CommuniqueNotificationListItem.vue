@@ -23,22 +23,12 @@ export default Vue.extend({
     }
   },
 
-  computed: {
-    computedStyle(): Record<string, string> {
-      return {
-        pointerEvents: 'auto',
-        transitionProperty: 'all',
-        // transitionDuration: '1s',
-      }
-    },
-  },
-
   methods: {
-    onNotificationClose(): void {
+    close(): void {
       this.isNotificationVisible = false
     },
 
-    onNotificationDestroyed(): void {
+    remove(): void {
       this.$communique.removeFromQueue(this.notification)
     },
   },
@@ -48,7 +38,6 @@ export default Vue.extend({
 <template>
   <Component
     :is="tag"
-    :style="computedStyle"
     :data-variant="notification.variant"
     role="status"
     aria-live="polite"
@@ -60,8 +49,15 @@ export default Vue.extend({
       v-if="isNotificationVisible"
       :notification="notification"
       v-bind="notification.$attrs"
-      @close="onNotificationClose"
-      @hook:destroyed="onNotificationDestroyed"
+      @close="close"
+      @hook:destroyed="remove"
     />
   </Component>
 </template>
+
+<style scoped>
+.CommuniqueNotificationListItem {
+  pointer-events: auto;
+  transition-property: all;
+}
+</style>

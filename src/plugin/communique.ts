@@ -1,9 +1,10 @@
 import {
   CommuniqueComponentConfig,
   CommuniqueNotificationComponent,
+  CommuniqueNotificationIconComponent,
   CommuniqueNotificationOptions,
   CommuniqueOptions,
-  CommuniqueVariantStyles,
+  CommuniqueVariantConfig,
   CommuniquePluginOptions,
   CommuniqueStyleConfig,
   CommuniqueNotificationDefaultOptions,
@@ -12,17 +13,6 @@ import Vue, { PluginFunction, VueConstructor } from 'vue'
 import { install, VueWithPlugin } from './install'
 import { inBrowser } from './utils/dom'
 import { assert, warn } from './utils/warn'
-
-const BaseNotification = () =>
-  import(
-    /* webpackChunkName: 'BaseNotification.vue' */
-    './components/opinionated/BaseNotification.vue'
-  )
-
-export enum CommuniqueEffect {
-  Scale = 'scale',
-  Slide = 'slide',
-}
 
 export enum CommuniquePosition {
   TopLeft = 'top-left',
@@ -36,20 +26,13 @@ export enum CommuniquePosition {
   BottomRight = 'bottom-right',
 }
 
-export enum CommuniqueVariant {
-  Success = 'success',
-  Error = 'error',
-  Warning = 'warning',
-  Info = 'info',
-}
-
 class CommuniqueNotification implements CommuniqueNotificationOptions {
   $attrs?: Record<string, string | Function | Function[]>
   component?: CommuniqueNotificationComponent | string
   delay: number
-  effect?: string
+  transition?: string
   position?: string
-  icon?: string
+  icon?: CommuniqueNotificationIconComponent | string
   title?: string
   message: string
   duration?: number
@@ -58,17 +41,64 @@ class CommuniqueNotification implements CommuniqueNotificationOptions {
 
   constructor(options: CommuniqueNotificationOptions) {
     this.$attrs = options.$attrs
-    this.delay = options.delay || 0
-    this.effect = options.effect
+    this.delay = options.delay && options.delay > 0 ? options.delay : 0
+    this.transition = options.transition
     this.position = options.position || CommuniquePosition.BottomLeft
     this.title = options.title
     this.message = options.message
     this.icon = options.icon
-    this.duration = options.duration
+    this.duration =
+      options.duration && options.duration > 0 ? options.duration : undefined
     this.variant = options.variant
     this.styles = options.styles
+    this.component = options.component
 
-    this.component = options.component || BaseNotification
+    warn(
+      options.component,
+      `notification component is undefined.
+
+There are three ways to render a notification component.
+
+Option 1, using the notification 'component' option:
+
+// @/components/SomeComponent.vue
+const notification = await this.$communique.dispatch({
+  title: 'Some notification',
+  message: 'Some notification message',
+  component: () =>
+    import(
+      /* webpackChunkName: 'BaseNotification.vue' */
+      '@/notification/components/BaseNotification.vue'
+    ),
+})
+
+Option 2, using the variant 'component' option:
+
+// @/src/notification/variants.(js|ts)
+export default {
+  success: {
+    component: () =>
+      import(
+        /* webpackChunkName: 'BaseNotification.vue' */
+        '@/notification/components/BaseNotification.vue'
+      ),
+  },
+}
+
+Option 3, using the Communique instance defaults 'component' option:
+
+// @/src/notification/index.(js|ts)
+const communique = new Communique({
+  defaults: {
+    component: () =>
+      import(
+        /* webpackChunkName: 'BaseNotification.vue' */
+        '@/notification/components/BaseNotification.vue'
+      ),
+  },
+})
+      `
+    )
   }
 
   assignUniqueId(id: number): void {
@@ -86,7 +116,7 @@ class CommuniqueNotification implements CommuniqueNotificationOptions {
 export default class Communique {
   components: CommuniqueComponentConfig[]
   defaults?: CommuniqueNotificationDefaultOptions
-  variantStyles?: CommuniqueVariantStyles
+  variants?: CommuniqueVariantConfig
   store: { queue: CommuniqueNotification[] }
 
   constructor(options: CommuniqueOptions = {}) {
@@ -118,7 +148,7 @@ export default class Communique {
 
     this.defaults = options.defaults
 
-    this.variantStyles = options.variantStyles
+    this.variants = options.variants
 
     this.store = Vue.observable({
       queue: [] as CommuniqueNotification[],
@@ -129,10 +159,22 @@ export default class Communique {
     return this.store.queue
   }
 
+  get componentNames(): string[] {
+    return this.components ? this.components.map(({ name }) => name) : []
+  }
+
+  get variantNames(): string[] {
+    return Object.keys(this.variants || {})
+  }
+
+  get positionNames(): string[] {
+    return Object.values(CommuniquePosition)
+  }
+
   getNormalizedNotificationOptions(
     notificationOptions: CommuniqueNotificationOptions
   ): CommuniqueNotificationOptions {
-    const normalizedOptions: CommuniqueNotificationOptions = {
+    let normalizedOptions: CommuniqueNotificationOptions = {
       ...this.defaults,
       ...notificationOptions,
     }
@@ -156,16 +198,16 @@ export default class Communique {
       normalizedOptions.component = componentConfig && componentConfig.component
     }
 
-    // If there are styles in the variant styles config,
+    // If there is a variant config,
     // and the notification has a variant,
-    // copy the variant styles to the notification styles
-    if (this.variantStyles && variant) {
-      const variantStyle = this.variantStyles[variant]
+    // copy the variant options to the notification options
+    if (this.variants && variant) {
+      const variantOptions = this.variants[variant]
 
-      if (variantStyle) {
-        normalizedOptions.styles = {
-          ...variantStyle,
-          ...normalizedOptions.styles,
+      if (variantOptions) {
+        normalizedOptions = {
+          ...variantOptions,
+          ...normalizedOptions,
         }
       }
     }
@@ -173,42 +215,10 @@ export default class Communique {
     return normalizedOptions
   }
 
-  notify(
+  dispatch(
     notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification> {
     return this.notifier(notification)
-  }
-
-  success(
-    notification: CommuniqueNotificationOptions
-  ): Promise<CommuniqueNotification> {
-    return this.notifier(
-      this.assignVariant(notification, CommuniqueVariant.Success)
-    )
-  }
-
-  info(
-    notification: CommuniqueNotificationOptions
-  ): Promise<CommuniqueNotification> {
-    return this.notifier(
-      this.assignVariant(notification, CommuniqueVariant.Info)
-    )
-  }
-
-  warning(
-    notification: CommuniqueNotificationOptions
-  ): Promise<CommuniqueNotification> {
-    return this.notifier(
-      this.assignVariant(notification, CommuniqueVariant.Warning)
-    )
-  }
-
-  error(
-    notification: CommuniqueNotificationOptions
-  ): Promise<CommuniqueNotification> {
-    return this.notifier(
-      this.assignVariant(notification, CommuniqueVariant.Error)
-    )
   }
 
   notifier(
@@ -237,14 +247,6 @@ export default class Communique {
         }, notification.duration)
       )
     }
-    return notification
-  }
-
-  assignVariant(
-    notification: CommuniqueNotificationOptions,
-    variant: string
-  ): CommuniqueNotificationOptions {
-    notification.variant = variant
     return notification
   }
 

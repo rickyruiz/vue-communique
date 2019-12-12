@@ -25,50 +25,28 @@ export default Vue.extend({
       type: String,
       default: '',
     },
-
-    gap: {
-      type: String,
-      default: '1rem',
-    },
   },
 
   computed: {
-    place(): [string, string, number] {
+    order(): number {
       const [row] = this.position.split('-')
 
-      const layout = {
-        top: ['start', 'stretch', -1],
-        center: ['center', 'stretch', -1],
-        bottom: ['end', 'stretch', 1],
-      } as Record<string, [string, string, number]>
+      const orders = {
+        top: -1,
+        center: -1,
+        bottom: 1,
+      } as Record<string, number>
 
-      return layout[row]
+      return orders[row]
     },
 
     computedClass(): string[] {
       return ['CommuniqueNotificationList', `CommuniqueNotificationList--${this.position}`]
     },
 
-    computedStyle(): Record<string, string> {
-      const [alignContent, justifyContent] = this.place
-
-      return {
-        position: 'relative',
-        display: 'grid',
-        gridAutoFlow: 'row',
-        alignContent,
-        justifyContent,
-        gridGap: this.gap,
-        listStyleType: 'none',
-        padding: '0px',
-        margin: '0px',
-      }
-    },
-
-    notificationStyle(): (notificationId: number) => Record<string, string> {
-      const [,, orderFactor] = this.place
-      return (notificationId: number) => ({
-        order: `${notificationId * orderFactor}`,
+    notificationStyle(): (index: number) => Record<string, string> {
+      return (index: number) => ({
+        order: `${index * this.order}`,
       })
     },
   },
@@ -78,16 +56,45 @@ export default Vue.extend({
 <template>
   <TransitionGroup
     :tag="tag"
-    :style="computedStyle"
     :class="computedClass"
     :data-position="position"
     name="CommuniqueNotificationList"
   >
     <CommuniqueNotificationListItem
-      v-for="notification in notifications"
+      v-for="(notification, index) in notifications"
       :key="notification.id"
       :notification="notification"
-      :style="notificationStyle(notification.id)"
+      :style="notificationStyle(index)"
     />
   </TransitionGroup>
 </template>
+
+<style scoped>
+.CommuniqueNotificationList {
+  position: relative;
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: 1rem;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.CommuniqueNotificationList--top-left,
+.CommuniqueNotificationList--top-center,
+.CommuniqueNotificationList--top-right {
+  align-content: start;
+}
+
+.CommuniqueNotificationList--center-left,
+.CommuniqueNotificationList--center,
+.CommuniqueNotificationList--center-right {
+  align-content: center;
+}
+
+.CommuniqueNotificationList--bottom-left,
+.CommuniqueNotificationList--bottom-center,
+.CommuniqueNotificationList--bottom-right {
+  align-content: end;
+}
+</style>

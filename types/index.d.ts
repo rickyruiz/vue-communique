@@ -9,12 +9,13 @@ export {
   CommuniqueComponentConfig,
   CommuniqueNotification,
   CommuniqueNotificationComponent,
+  CommuniqueNotificationIconComponent,
   CommuniqueNotificationOptions,
   CommuniqueNotificationDefaultOptions,
   CommuniqueOptions,
   CommuniquePluginOptions,
   CommuniqueStyleConfig,
-  CommuniqueVariantStyles,
+  CommuniqueVariantConfig,
 } from './communique'
 
 //===

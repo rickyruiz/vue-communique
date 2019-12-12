@@ -29,10 +29,10 @@
       />
     </select>
     <select
-      v-model="effect"
+      v-model="transition"
     >
       <option
-        v-for="item in effects"
+        v-for="item in transitions"
         :key="item"
         :value="item"
         v-text="item"
@@ -57,7 +57,7 @@
 </template>
 
 <script lang="ts">
-import { CommuniqueVariant, CommuniqueEffect, CommuniquePosition } from '@/plugin/communique'
+import { CommuniquePosition } from '@/plugin/communique'
 import Vue from 'vue'
 
 export default Vue.extend({
@@ -66,18 +66,18 @@ export default Vue.extend({
   data() {
     return {
       // Communique notification props
-      component: '',
-      variant: CommuniqueVariant.Success,
+      component: this.$communique.componentNames[0],
+      variant: this.$communique.variantNames[0],
       position: CommuniquePosition.TopLeft,
-      effect: CommuniqueEffect.Scale,
+      transition: 'scale',
       title: 'Notification',
       message: 'hello world',
 
       // Dropdown options
-      components: ['', ...this.$communique.components.map(({ name }) => name)],
-      variants: CommuniqueVariant,
+      components: this.$communique.componentNames,
+      variants: this.$communique.variantNames,
       positions: CommuniquePosition,
-      effects: CommuniqueEffect,
+      transitions: ['scale', 'slide'],
     }
   },
 
@@ -90,17 +90,17 @@ export default Vue.extend({
   mounted() {
     console.log('components:', this.$communique.components)
     console.log('default component:', this.$communique.defaults.component)
-    console.log('variant styles:', this.$communique.variantStyles)
+    console.log('variant config:', this.$communique.variants)
   },
 
   methods: {
     async push(): Promise<void> {
-      const notification = await this.$communique.notify({
+      const notification = await this.$communique.dispatch({
         title: this.title,
         message: this.message,
         component: this.component,
         variant: this.variant,
-        effect: this.effect,
+        transition: this.transition,
         position: this.position,
         // styles: {
         //   backgroundColor: 'dodgerblue',

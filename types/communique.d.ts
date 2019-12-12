@@ -5,20 +5,25 @@ import Vue, {
   VueConstructor,
 } from 'vue'
 
-export type CommuniqueNotificationComponent =
-  | VueConstructor<Vue>
-  | ComponentOptions<Vue>
-  | AsyncComponent
+type CustomVue = VueConstructor<Vue> | ComponentOptions<Vue> | AsyncComponent
+
+export type CommuniqueNotificationComponent = CustomVue
+
+export type CommuniqueNotificationIconComponent = CustomVue
 
 export declare class Communique {
   constructor(options?: CommuniqueOptions)
 
   components: CommuniqueComponentConfig[]
   defaults: CommuniqueNotificationDefaultOptions
-  variantStyles?: CommuniqueVariantStyles
+  variants: CommuniqueVariantConfig
   store: { queue: CommuniqueNotification[] }
 
   queue: CommuniqueNotification[]
+
+  componentNames: string[]
+  variantNames: string[]
+  positionNames: string[]
 
   getNormalizedNotificationOptions(
     notificationOptions: CommuniqueNotificationOptions
@@ -30,10 +35,6 @@ export declare class Communique {
   setTimeoutIfDefined(
     notification: CommuniqueNotificationOptions
   ): CommuniqueNotification
-  assignVariant(
-    notification: CommuniqueNotificationOptions,
-    variant: string
-  ): CommuniqueNotificationOptions
   assignNotificationUniqueId(
     notification: CommuniqueNotificationOptions
   ): CommuniqueNotification
@@ -44,19 +45,7 @@ export declare class Communique {
     notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification>
 
-  notify(
-    notification: CommuniqueNotificationOptions
-  ): Promise<CommuniqueNotification>
-  success(
-    notification: CommuniqueNotificationOptions
-  ): Promise<CommuniqueNotification>
-  info(
-    notification: CommuniqueNotificationOptions
-  ): Promise<CommuniqueNotification>
-  warning(
-    notification: CommuniqueNotificationOptions
-  ): Promise<CommuniqueNotification>
-  error(
+  dispatch(
     notification: CommuniqueNotificationOptions
   ): Promise<CommuniqueNotification>
 
@@ -73,9 +62,9 @@ export declare class CommuniqueNotification
   $attrs?: Record<string, string | Function | Function[]>
   component?: CommuniqueNotificationComponent
   delay: number
-  effect?: string
+  transition?: string
   position?: string
-  icon?: string
+  icon?: CommuniqueNotificationIconComponent | string
   title?: string
   message: string
   duration?: number
@@ -96,7 +85,7 @@ export interface CommuniquePluginOptions {
 export interface CommuniqueOptions {
   components?: CommuniqueComponentConfig[];
   defaults?: CommuniqueNotificationDefaultOptions;
-  variantStyles?: CommuniqueVariantStyles;
+  variants?: CommuniqueVariantConfig;
 }
 
 export interface CommuniqueComponentConfig {
@@ -104,7 +93,10 @@ export interface CommuniqueComponentConfig {
   component: CommuniqueNotificationComponent;
 }
 
-export type CommuniqueVariantStyles = Record<string, CommuniqueStyleConfig>
+export type CommuniqueVariantConfig = Record<
+  string,
+  CommuniqueNotificationDefaultOptions
+>
 
 export type CommuniqueStyleConfig = Record<string, string>
 
@@ -112,9 +104,9 @@ export interface CommuniqueNotificationOptions {
   $attrs?: Record<string, string | Function | Function[]>;
   component?: CommuniqueNotificationComponent | string;
   delay?: number;
-  effect?: string;
+  transition?: string;
   position?: string;
-  icon?: string;
+  icon?: CommuniqueNotificationIconComponent | string;
   title?: string;
   message: string;
   duration?: number;
